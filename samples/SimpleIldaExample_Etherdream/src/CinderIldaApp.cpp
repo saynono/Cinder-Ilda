@@ -94,6 +94,8 @@ void CinderIldaApp::setup()
 //    mIldaFrame.params.output.transform.scale = Vec2f(.5,.5);
 //    mIldaFrame.params.output.transform.offset = Vec2f(.5,.5);
     
+    mIldaFrame.params.output.targetPointCount = 200;
+    
     mIldaFrame.begin();
     mIldaFrame.addShape2d(shapeOrg,ColorA(1,0,0,1));
     mIldaFrame.addPath2d(something);
@@ -119,7 +121,7 @@ void CinderIldaApp::setup()
 	simple.addLine( "Font From Resource" );
 	mTexture = gl::Texture( simple.render( true, PREMULT ) );
 
-     mIldaFrame.draw(0,0,100,100);
+    mIldaFrame.draw(0,0,100,100);
     
 }
 
@@ -145,7 +147,6 @@ void CinderIldaApp::update()
 
 void CinderIldaApp::draw()
 {
-	// clear out the window with black
 	gl::clear( Color( 0, 0, 0 ) );
     
     gl::draw( mTexture , Vec2f( 10, 10 ) );
@@ -157,10 +158,7 @@ void CinderIldaApp::draw()
     gl::drawSolidRect(Rectf(0,0,w,h));
     gl::color(1, 1, 1);
     mIldaFrame.draw(0,0,w,h);
-    
-//    mIldaFrame.getPoints();
-//    gl::draw( mOrigShape );
-    
+        
 }
 
 CINDER_APP_NATIVE( CinderIldaApp, RendererGl )

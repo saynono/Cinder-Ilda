@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<cinder>
+<block
+	name="Cinder-Ilda"
+	id="com.say-nono.cinder.ilda"
+	git="git@github.com:saynono/CinderIlda.git"
+	author="nono"
+	license="Apache 2.0, LGPL"
+	library="http://www.ether-dream.com/"
+	url="http://say-nono.com/"
+	summary="Enables etherdream dac laser controller for cinder."
+	>
+	<supports os="macosx" />
+	<sourcePattern>src/ciilda/*.cpp</sourcePattern>
+	<headerPattern>src/ciilda/*.h</headerPattern>
+	<sourcePattern>src/cietherdream/*.cpp</sourcePattern>
+	<headerPattern>src/cietherdream/*.h</headerPattern>
+	<sourcePattern>lib/etherdream/libs/driver/libetherdream/*.c</sourcePattern>
+	<headerPattern>lib/etherdream/libs/driver/libetherdream/*.h</headerPattern>
+	<headerPattern>lib/etherdream/libs/common/*.h</headerPattern>
+	<platform os="macosx">
+	</platform>
+</block>
+<template>templates/Basic GL/template.xml</template>
+</cinder>

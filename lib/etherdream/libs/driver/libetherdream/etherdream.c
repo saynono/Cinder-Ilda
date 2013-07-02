@@ -802,9 +802,11 @@ int etherdream_lib_start(void) {
 #endif
 
 	// Set up the logging fd (just stderr for now)
+#ifdef ETHERDREAM_LOG
 	trace_fp = stderr;
 	fprintf(trace_fp, "----------\n");
 	fflush(trace_fp);
+#endif
 	trace(NULL, "== libetherdream started ==\n");
 
 	pthread_mutex_init(&dac_list_lock, NULL);

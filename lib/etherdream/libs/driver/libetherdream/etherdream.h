@@ -11,6 +11,8 @@ extern "C" {
 #define _POSIX_C_SOURCE 199309L
 #define _DARWIN_C_SOURCE 1
     
+//#define ETHERDREAM_LOG
+    
 #include <arpa/inet.h>
 #include <errno.h>
 #include <netinet/in.h>

@@ -59,14 +59,33 @@ void CinderIldaApp::setup()
     //    something.close();
 
     MatrixAffine2f matrix;
+    
+    matrix.setToIdentity();
+    matrix.translate( -Vec2f(getWindowWidth(),getWindowHeight())/2.0 );
+    triangle.transform(matrix);
+    something.transform(matrix);
+    shapeOrg.transform(matrix);
+
+    matrix.setToIdentity();
+//    matrix.translate(-Vec2f(getWindowWidth(),getWindowHeight())/2.0);
+//    matrix.transformPoint(Vec2f(getWindowWidth(),getWindowHeight())/2.0);
     matrix.scale(Vec2f( 1.0/(float)getWindowWidth(), 1.0/(float)getWindowHeight()));
-    matrix.translate(Vec2f(.5,.5));
-    matrix.scale(.25);
+    matrix.scale(.1);
+//    matrix.scale(.25);
 
     triangle.transform(matrix);
     something.transform(matrix);
     shapeOrg.transform(matrix);
     
+    matrix.setToIdentity();
+    matrix.translate( Vec2f(0.5,0.5) );
+    triangle.transform(matrix);
+    something.transform(matrix);
+    shapeOrg.transform(matrix);
+    
+
+    
+
 //    MatrixAffine2f matrix;
 //    matrix.scale(.5);
 //    matrix.translate(Vec2f(.5,.5));
@@ -75,9 +94,14 @@ void CinderIldaApp::setup()
 //    mIldaFrame.params.output.transform.scale = Vec2f(.5,.5);
 //    mIldaFrame.params.output.transform.offset = Vec2f(.5,.5);
     
-    mIldaFrame.setShape2d(shapeOrg,ColorA(1,0,0,1));
+    mIldaFrame.begin();
+    mIldaFrame.addShape2d(shapeOrg,ColorA(1,0,0,1));
     mIldaFrame.addPath2d(something);
     mIldaFrame.addPath2d(triangle, ColorA(1,0,1,1));
+    mIldaFrame.moveTo(Vec2f(.3,.2));
+    mIldaFrame.lineTo(Vec2f(.6,.2));
+    mIldaFrame.lineTo(Vec2f(.6,.6));
+    mIldaFrame.end();
     
     
     mEtherdream.setup();
@@ -95,6 +119,8 @@ void CinderIldaApp::setup()
 	simple.addLine( "Font From Resource" );
 	mTexture = gl::Texture( simple.render( true, PREMULT ) );
 
+     mIldaFrame.draw(0,0,100,100);
+    
 }
 
 void CinderIldaApp::mouseDown( MouseEvent event )
@@ -124,10 +150,15 @@ void CinderIldaApp::draw()
     
     gl::draw( mTexture , Vec2f( 10, 10 ) );
     gl::color(.3, 1, 1);
-    mIldaFrame.draw(0,0,getWindowWidth(),getWindowHeight());
-    mIldaFrame.getPoints();
     
+    float w = 500;
+    float h = 500;
+    gl::color(.1,.1,.1);
+    gl::drawSolidRect(Rectf(0,0,w,h));
+    gl::color(1, 1, 1);
+    mIldaFrame.draw(0,0,w,h);
     
+//    mIldaFrame.getPoints();
 //    gl::draw( mOrigShape );
     
 }

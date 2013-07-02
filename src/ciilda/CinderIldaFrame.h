@@ -71,6 +71,8 @@ public:
     //--------------------------------------------------------------
     void draw(float x=0, float y=0, float w=0, float h=0);
     
+    void drawSegment(const Path2d& path, int part );
+    
     //--------------------------------------------------------------
     void clear();
     
@@ -80,11 +82,13 @@ public:
     //--------------------------------------------------------------
     
 //    void addPath2d(const Path2d& path);
-//    
-//    //--------------------------------------------------------------
     
-    void setShape2d(const Shape2d& shape);
-    void setShape2d(const Shape2d& shape, ColorA clr);
+    //--------------------------------------------------------------
+    
+    void begin();
+    
+//    void setShape2d(const Shape2d& shape);
+//    void setShape2d(const Shape2d& shape, ColorA clr);
 
     void addShape2d(const Shape2d& shape);
     void addShape2d(const Shape2d& shape, ColorA clr);
@@ -94,6 +98,20 @@ public:
     
     void addColoursToShape(const Shape2d& shape, ColorA clr);
     void addColoursToPath(const Path2d& path, ColorA clr);
+    
+    void moveTo(Vec2f p);
+    void lineTo(Vec2f p);
+    void arcTo(const Vec2f &p, const Vec2f &t, float radius);
+    void curveTo(const Vec2f &p, const Vec2f &p1, const Vec2f &p2 );
+    void quadTo(const Vec2f &p1, const Vec2f &p2 );
+    
+    void setColor(ColorA clr);
+    const ColorA getColor(ColorA clr);
+    
+    void end();
+
+    //--------------------------------------------------------------
+
     
     const Shape2d& getShape2d();
     

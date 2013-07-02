@@ -51,7 +51,7 @@ namespace ciilda {
     int Etherdream::init() {
         int device_num = etherdream_dac_count();
         if (!device_num) {
-            console() << "ofxEtherdream::init - No DACs found" << std::endl;
+//            console() << "ofxEtherdream::init - No DACs found" << std::endl;
             return 0;
         }
         

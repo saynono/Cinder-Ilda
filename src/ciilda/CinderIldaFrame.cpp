@@ -30,7 +30,7 @@ namespace ciilda {
         params.output.doCapX = false;
         params.output.doCapY = false;
         
-        params.output.targetPointCount = 400;
+        params.output.targetPointCount = 600;
         params.output.spacing = 0;
         
         params.output.transform.doFlipX = false;
@@ -78,6 +78,11 @@ namespace ciilda {
     
     //--------------------------------------------------------------
     void Frame::draw(float x, float y, float w, float h) {
+        
+//        console() << "DRAW ILDA FRAME!" << std::endl;
+//        return;
+
+        
         if(w==0) w = getWindowWidth();
         if(h==0) h = getWindowHeight();
         
@@ -95,45 +100,83 @@ namespace ciilda {
         gl::pushMatrices();
         gl::translate(x, y);
         gl::scale(w/scale, h/scale);
+        gl::color( ColorA(.5,0,0,1) );
         gl::draw( shapeDraw );
         gl::popMatrices();
         
-        gl::pushMatrices();
-        gl::translate(cx, cy);
-        gl::scale(sw, sh);
         
+        
+        
+        ColorA clr;
+        int segCounter = 0;
+        int pointCounter = 0;
+        size_t pathType;
+        Path2d path;
+        Vec2f startPoint;
+        float detail = 100.0f;
         
         if(params.draw.lines) {
-            gl::lineWidth(2);
-//            ofSetLineWidth(2);
-//            for(int i=0; i<processedPolys.size(); i++) {
-//                ofPolyline &poly = processedPolys[i];
-//                ColorA &pcolor = processedPolys[i].color;
-//                ofSetColor(pcolor.r*255, pcolor.g*255, pcolor.b*255);
-//                poly.draw();
-//                //            for(int i=0; i<data.size(); i++) {
-//                //                ofPoint p0 = data[i];
-//                //                if(i < data.size()-1) {
-//                //                    ofPoint p1 = data[i+1];
-//                ////                    ofSetColor(p1.r * 255, p1.g * 255, p1.b * 255, p1.a * 255);
-//                //                    ofLine(p0.x, p0.y, p1.x, p1.y);
-//                //                }
-//                //            }
-//            }
+            gl::pushMatrices();
+            gl::translate(x, y);
+            gl::scale(w, h);
+            gl::lineWidth(1);
+            for(int i=0; i<origShape.getNumContours(); i++) {
+                path = origShape.getContour(i);
+                pointCounter = 0;
+                clr = mColorsSegments[segCounter];
+                gl::color(clr);
+                
+                gl::begin(GL_LINE_STRIP);
+                startPoint = path.getPoint(pointCounter++);
+                gl::vertex(startPoint);
+                for(int j=0;j<path.getNumSegments();j++){
+                    pathType = path.getSegmentType(j);
+                    clr = mColorsSegments[segCounter];
+                    gl::color(clr);
+                    if(pathType == Path2d::LINETO){
+                        gl::vertex( path.getPoint(pointCounter++) );
+                    }else if(pathType == Path2d::CLOSE ){
+                        gl::vertex( startPoint );
+                    }else if(pathType == Path2d::MOVETO){
+//                        gl::moveTo(path.getPoint(pointCounter++));
+                    }else{
+                        
+                        if(pathType == Path2d::CUBICTO) pointCounter += 3;
+                        else if(pathType == Path2d::QUADTO) pointCounter += 2;
+                        
+                        float step = 1.0/detail;
+                        for(float percent=step;percent<=1;percent+=step){
+                            gl::vertex(path.getSegmentPosition(j, percent));
+                        }
+
+                    }
+                    segCounter++;
+                }
+//                if(path.getSegmentType(path.getNumSegments()-1) == Path2d::CLOSE) gl::begin(GL_LINE_LOOP);
+                gl::end();
+//                gl::end((pathType == Path2d::CLOSE));
+            }
+            gl::popMatrices();
         }
+        
         if(params.draw.points) {
+            gl::pushMatrices();
+            gl::translate(cx, cy);
+            gl::scale(sw, sh);
+
             glPointSize(5);
             gl::begin(GL_POINTS);
             for(int i=0;i<points.size();i++){
                 gl::vertex(points[i].x, points[i].y);
             }
             gl::end();
+            
+            gl::popMatrices();
         }
         
-        gl::popMatrices();
         
     }
-    
+
     //--------------------------------------------------------------
     void Frame::clear() {
 //        origPolys.clear();
@@ -146,21 +189,31 @@ namespace ciilda {
     }
     
     //--------------------------------------------------------------
-
-    void Frame::setShape2d(const Shape2d& shape){
-        setShape2d(shape,mCurrentColor);
-    }
     
-    void Frame::setShape2d(const Shape2d& shape, ColorA clr){
+    void Frame::begin(){
         mColorsContours.clear();
         mColorsSegments.clear();
-        origShape = shape;
-        for(int i=0;i<shape.getNumContours();i++){
-            mColorsContours.push_back(clr);
-        }
-        addColoursToShape(shape, clr);
+        origShape.clear();
+    }
+
+    void Frame::end(){
         updateFinalPoints();
     }
+    
+//    void Frame::setShape2d(const Shape2d& shape){
+//        setShape2d(shape,mCurrentColor);
+//    }
+//    
+//    void Frame::setShape2d(const Shape2d& shape, ColorA clr){
+//        mColorsContours.clear();
+//        mColorsSegments.clear();
+//        origShape = shape;
+//        for(int i=0;i<shape.getNumContours();i++){
+//            mColorsContours.push_back(clr);
+//        }
+//        addColoursToShape(shape, clr);
+//        updateFinalPoints();
+//    }
 
     //--------------------------------------------------------------
     
@@ -174,7 +227,7 @@ namespace ciilda {
             mColorsContours.push_back(clr);
         }
         addColoursToShape(shape, clr);
-        updateFinalPoints();
+//        updateFinalPoints();
     }
 
     //--------------------------------------------------------------
@@ -187,8 +240,47 @@ namespace ciilda {
         origShape.appendContour(path);
         mColorsContours.push_back(clr);
         addColoursToPath(path, clr);
-        updateFinalPoints();
+//        updateFinalPoints();
     }
+    
+    //--------------------------------------------------------------
+    
+    void Frame::moveTo(Vec2f p){
+        origShape.moveTo(p);
+        // Too much???
+        mColorsSegments.push_back(mCurrentColor);
+    }
+    
+    void Frame::lineTo(Vec2f p){
+        origShape.lineTo(p);
+        mColorsSegments.push_back(mCurrentColor);
+    }
+    
+    void Frame::arcTo(const Vec2f &p, const Vec2f &t, float radius){
+        origShape.arcTo(p,t,radius);
+        mColorsSegments.push_back(mCurrentColor);
+    }
+    
+    void Frame::curveTo(const Vec2f &p, const Vec2f &p1, const Vec2f &p2 ){
+        origShape.curveTo(p,p1,p2);
+        mColorsSegments.push_back(mCurrentColor);
+    }
+    
+    void Frame::quadTo(const Vec2f &p1, const Vec2f &p2 ){
+        origShape.quadTo(p1,p2);
+        mColorsSegments.push_back(mCurrentColor);
+    }
+    
+    //--------------------------------------------------------------
+    
+    void Frame::setColor(ColorA clr){
+        mCurrentColor = clr;
+    }
+    
+    const ColorA Frame::getColor(ColorA clr){
+        return mCurrentColor;
+    }
+
 
     //--------------------------------------------------------------
 
@@ -246,8 +338,9 @@ namespace ciilda {
         calib.appendContour(lineVert);
         calib.appendContour(circle);
         
-        setShape2d(calib);
-        
+        begin();
+        addShape2d(calib);
+        end();
     }
     
     //--------------------------------------------------------------

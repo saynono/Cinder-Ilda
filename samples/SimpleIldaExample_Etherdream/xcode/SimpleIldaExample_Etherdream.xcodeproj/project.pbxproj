@@ -48,6 +48,7 @@
 		A4271B05583C4101A7ACAF85 /* CinderIldaApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = CinderIldaApp.cpp; path = ../src/CinderIldaApp.cpp; sourceTree = "<group>"; };
 		CC32F4B2F6604609A4459A65 /* SimpleIldaExample_Etherdream_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleIldaExample_Etherdream_Prefix.pch; sourceTree = "<group>"; };
 		D1B6186FC7A549F8818D00C4 /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
+		FF045DD7178C9280005FE797 /* CinderLaserDac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CinderLaserDac.h; sourceTree = "<group>"; };
 		FF6DAB301783879200F53BF2 /* easyLase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = easyLase.h; sourceTree = "<group>"; };
 		FF6DAB311783879200F53BF2 /* libEasyLase.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libEasyLase.dylib; sourceTree = "<group>"; };
 		FF6DAB321783879200F53BF2 /* libftd2xx.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libftd2xx.dylib; sourceTree = "<group>"; };
@@ -177,6 +178,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FF045DD5178C9280005FE797 /* cilaserdac */ = {
+			isa = PBXGroup;
+			children = (
+				FF045DD7178C9280005FE797 /* CinderLaserDac.h */,
+			);
+			path = cilaserdac;
+			sourceTree = "<group>";
+		};
 		FF6DAB271783879200F53BF2 /* Cinder-Ilda */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,6 +291,7 @@
 		FF6DAB701783879300F53BF2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				FF045DD5178C9280005FE797 /* cilaserdac */,
 				FF6DAB711783879300F53BF2 /* cietherdream */,
 				FF6DAB741783879300F53BF2 /* ciilda */,
 			);

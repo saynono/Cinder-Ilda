@@ -6,6 +6,7 @@
 #include "cinder/Text.h"
 
 #include "CinderEtherdream.h"
+#include "CinderLaserDac.h"
 #include "CinderIldaFrame.h"
 
 using namespace ci;
@@ -26,7 +27,7 @@ class CinderIldaApp : public AppNative {
     private:
     
         ciilda::Frame               mIldaFrame;
-        ciilda::Etherdream          mEtherdream;
+        ciilda::LaserController*    mEtherdream;
     
         gl::Texture                 mTexture;
         Font                        mFont;
@@ -106,7 +107,8 @@ void CinderIldaApp::setup()
     mIldaFrame.end();
     
     
-    mEtherdream.setup();
+    mEtherdream = new ciilda::Etherdream();
+    mEtherdream->setup();
     
     gl::enableAlphaBlending();
     
@@ -131,7 +133,7 @@ void CinderIldaApp::mouseDown( MouseEvent event )
 
 void CinderIldaApp::update()
 {
-    mEtherdream.setPoints(mIldaFrame);
+    mEtherdream->setPoints(mIldaFrame);
     
     
     float fps = getFrameRate();

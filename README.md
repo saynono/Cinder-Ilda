@@ -1,4 +1,4 @@
-CinderIlda
+Cinder-Ilda
 ==========
 
 Ilda block for cinder.
@@ -14,6 +14,11 @@ http://genomelaser.com/
 
 This block is heavyly inspired by the openframeworks addons ofxEtherdream (https://github.com/memo/ofxEtherdream) and ofxIlda (https://github.com/memo/ofxIlda) by Daito Manabe + Yusuke Tomoto (Rhizomatiks)
 and Memo Akten, [www.memo.tv](http://www.memo.tv)
+
+Dependencies
+------------
+
+Cinder 0.8.5 (http://libcinder.org/)
 
 
 Licence

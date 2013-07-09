@@ -21,7 +21,6 @@ namespace ciilda {
         
         params.draw.lines = true;
         params.draw.points = true;
-        params.draw.pointNumbers = false;
         
         
         params.output.color = params.output.color.white();//.set(1.0f, 1.0f, 1.0f, 1.0f);
@@ -50,7 +49,6 @@ namespace ciilda {
         s << "params:" << endl;
         s << "draw.lines : " << params.draw.lines << endl;
         s << "draw.point : " << params.draw.points << endl;
-        s << "draw.pointNumbers : " << params.draw.pointNumbers << endl;
         
         s << "output.color : " << params.output.color << endl;
         s << "output.blankCount : " << params.output.blankCount << endl;
@@ -163,8 +161,8 @@ namespace ciilda {
             gl::pushMatrices();
             gl::translate(cx, cy);
             gl::scale(sw, sh);
-
-            glPointSize(5);
+            gl::color(Color::white());
+            glPointSize(3);
             gl::begin(GL_POINTS);
             for(int i=0;i<points.size();i++){
                 gl::vertex(points[i].x, points[i].y);
@@ -435,6 +433,7 @@ namespace ciilda {
         vector<float> segmentLengths;
         
         float totalLength = 0;
+        float totalLengthBlank = 0;
         int blankCount = params.output.blankCount;
         int endCount = params.output.endCount;
         
@@ -478,12 +477,13 @@ namespace ciilda {
         int segCounter = 0;
         float steps;
         float percentSeg;
-        Vec2f pos;
+        Vec2f pos = origShape.getContour(origShape.getNumContours()-1).getPosition(1);
         Point pIlda;
         ColorA clr;
         for(int i=0; i<origShape.getNumContours(); i++) {
             float len = 0;
             Path2d path = origShape.getContour(i);
+            totalLengthBlank += (path.getPosition(0)-pos).length();
             pos = path.getPosition(0);
             pIlda = transformPoint(pos);
 //            clr = mColorsSegments[i];
@@ -521,7 +521,9 @@ namespace ciilda {
 //        }
         
         stats.pointCountProcessed = points.size();
-        
+        stats.lengthTotal = totalLengthBlank + totalLength;
+        stats.lengthBlank = totalLengthBlank;
+        stats.lengthLines = totalLength;
     }
     
     //////////////////////////////////////////////////////////////////////////////////////////

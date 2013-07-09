@@ -33,7 +33,6 @@ public:
         struct {
             bool lines; // draw lines
             bool points;    // draw points
-            bool pointNumbers;  // draw point numbers (not implemented yet)
         } draw;
         
         struct {
@@ -58,6 +57,9 @@ public:
     struct {
         int pointCountOrig;    // READONLY current total number of points across all paths (excluding blanks and end repititons)
         int pointCountProcessed; // same as above, except AFTER being processed
+        float lengthTotal;
+        float lengthLines;
+        float lengthBlank;
     } stats;
     
     Frame();

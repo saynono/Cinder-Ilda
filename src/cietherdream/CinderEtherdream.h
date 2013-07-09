@@ -13,6 +13,7 @@
 #include "cinder/Thread.h"
 #include "etherdream.h"
 #include "CinderIldaFrame.h"
+#include "CinderLaserDac.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -21,19 +22,19 @@ using namespace std;
 
 namespace ciilda {
     
-class Etherdream{
+    class Etherdream: public LaserController{
 
 public:
 	
     Etherdream();
     
-    ~Etherdream() {
+    virtual ~Etherdream() {
         kill();
     }
     
-    bool stateIsFound();
+    virtual bool stateIsFound();
     
-    void kill() {
+    virtual void kill() {
         clear();
         stop();
         if(stateIsFound()) {
@@ -42,30 +43,30 @@ public:
         }
     }
     
-    void setup(bool bStartThread = true);
+    virtual void setup(bool bStartThread = true);
     virtual void threadedFunction();
     
     
     // check if the device has shutdown (weird bug in etherdream driver) and reconnect if nessecary
-    bool checkConnection(bool bForceReconnect = true);
+    virtual bool checkConnection(bool bForceReconnect = true);
     
-    void clear();
-    void start();
-    void stop();
+    virtual void clear();
+    virtual void start();
+    virtual void stop();
     
-    void addPoints(const vector<ciilda::Point>& _points);
-    void addPoints(const ciilda::Frame& ildaFrame);
+    virtual void addPoints(const vector<ciilda::Point>& _points);
+    virtual void addPoints(const ciilda::Frame& ildaFrame);
     
-    void setPoints(const vector<ciilda::Point>& _points);
-    void setPoints(const ciilda::Frame& ildaFrame);
+    virtual void setPoints(const vector<ciilda::Point>& _points);
+    virtual void setPoints(const ciilda::Frame& ildaFrame);
     
-    void send();
+    virtual void send();
     
-    void setPPS(int i);
-    int getPPS() const;
+    virtual void setPPS(int i);
+    virtual int getPPS() const;
     
-    void setWaitBeforeSend(bool b);
-    bool getWaitBeforeSend() const;
+    virtual void setWaitBeforeSend(bool b);
+    virtual bool getWaitBeforeSend() const;
     
     
 private:

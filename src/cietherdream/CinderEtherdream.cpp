@@ -85,6 +85,7 @@ namespace ciilda {
                     send();
                     break;
             }
+            cinder::sleep(10);
         }
     }
     

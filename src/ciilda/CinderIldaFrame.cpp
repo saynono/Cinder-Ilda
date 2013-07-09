@@ -3,7 +3,7 @@
 //  LaserGateway
 //
 //  Created by say nono on 27.06.13.
-//  Copyright (c) 2013 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2013 www.say-nono.com All rights reserved.
 //
 
 #include "CinderIldaFrame.h"
@@ -23,7 +23,7 @@ namespace ciilda {
         params.draw.points = true;
         
         
-        params.output.color = params.output.color.white();//.set(1.0f, 1.0f, 1.0f, 1.0f);
+        params.output.color = params.output.color.white();
         params.output.blankCount = 10;
         params.output.endCount = 3;
         params.output.doCapX = false;
@@ -76,10 +76,6 @@ namespace ciilda {
     
     //--------------------------------------------------------------
     void Frame::draw(float x, float y, float w, float h) {
-        
-//        console() << "DRAW ILDA FRAME!" << std::endl;
-//        return;
-
         
         if(w==0) w = getWindowWidth();
         if(h==0) h = getWindowHeight();
@@ -177,8 +173,11 @@ namespace ciilda {
 
     //--------------------------------------------------------------
     void Frame::clear() {
-//        origPolys.clear();
-//        processedPolys.clear();
+        points.clear();
+        origShape.clear();
+        processedShape.clear();
+        mColorsContours.clear();
+        mColorsSegments.clear();
     }
     
     //--------------------------------------------------------------
@@ -197,21 +196,6 @@ namespace ciilda {
     void Frame::end(){
         updateFinalPoints();
     }
-    
-//    void Frame::setShape2d(const Shape2d& shape){
-//        setShape2d(shape,mCurrentColor);
-//    }
-//    
-//    void Frame::setShape2d(const Shape2d& shape, ColorA clr){
-//        mColorsContours.clear();
-//        mColorsSegments.clear();
-//        origShape = shape;
-//        for(int i=0;i<shape.getNumContours();i++){
-//            mColorsContours.push_back(clr);
-//        }
-//        addColoursToShape(shape, clr);
-//        updateFinalPoints();
-//    }
 
     //--------------------------------------------------------------
     
@@ -225,7 +209,6 @@ namespace ciilda {
             mColorsContours.push_back(clr);
         }
         addColoursToShape(shape, clr);
-//        updateFinalPoints();
     }
 
     //--------------------------------------------------------------
@@ -238,14 +221,12 @@ namespace ciilda {
         origShape.appendContour(path);
         mColorsContours.push_back(clr);
         addColoursToPath(path, clr);
-//        updateFinalPoints();
     }
     
     //--------------------------------------------------------------
     
     void Frame::moveTo(Vec2f p){
         origShape.moveTo(p);
-        // Too much???
         mColorsSegments.push_back(mCurrentColor);
     }
     
@@ -385,43 +366,6 @@ namespace ciilda {
         
         calculateIldaPoints();
         
-//        points.clear();
-//        for(int i=0; i<processedPolys.size(); i++) {
-//            ofPolyline &poly = processedPolys[i];
-//            ofFloatColor &pcolor = processedPolys[i].color;
-//            
-//            if(poly.size() > 0) {
-//                
-//                ofPoint startPoint = transformPoint(poly.getVertices().front());
-//                ofPoint endPoint = transformPoint(poly.getVertices().back());
-//                
-//                // blanking at start
-//                for(int n=0; n<params.output.blankCount; n++) {
-//                    points.push_back( Point(startPoint, ofFloatColor(0, 0, 0, 0)));
-//                }
-//                
-//                // repeat at start
-//                for(int n=0; n<params.output.endCount; n++) {
-//                    points.push_back( Point(startPoint, pcolor) );
-//                }
-//                
-//                // add points
-//                for(int j=0; j<poly.size(); j++) {
-//                    points.push_back( Point(transformPoint(poly[j]), pcolor) );
-//                }
-//                
-//                // repeat at end
-//                for(int n=0; n<params.output.endCount; n++) {
-//                    points.push_back( Point(endPoint, pcolor) );
-//                }
-//                
-//                // blanking at end
-//                for(int n=0; n<params.output.blankCount; n++) {
-//                    points.push_back( Point(endPoint, ofFloatColor(0, 0, 0, 0) ));
-//                }
-//                
-//            }
-//        }
     }
     
     
@@ -469,11 +413,6 @@ namespace ciilda {
         
         
         float step = totalLength/totalAmountStripped;
-        
-//        console() << std::endl<<std::endl<<"LEN TOT : " << totalLength << std::endl;
-//        console() << " step : "<< step<< std::endl;
-//        console() << " totalAmountStripped : "<< totalAmountStripped<< std::endl;
-        
         int segCounter = 0;
         float steps;
         float percentSeg;
@@ -486,7 +425,6 @@ namespace ciilda {
             totalLengthBlank += (path.getPosition(0)-pos).length();
             pos = path.getPosition(0);
             pIlda = transformPoint(pos);
-//            clr = mColorsSegments[i];
             clr = mColorsSegments[segCounter];
             
             for(int k=0;k<blankCount;k++){ points.push_back(pIlda); }
@@ -514,16 +452,15 @@ namespace ciilda {
                         
         }
         
-        console() << " segCounter : " << segCounter << "        mColorsSegments: " << mColorsSegments.size() << std::endl;
-//
-//        for(int i=0;i<points.size();i++){
-////            console() << i << " -> " << points[i].x << " _ "  << points[i].x << std::endl;
-//        }
-        
         stats.pointCountProcessed = points.size();
         stats.lengthTotal = totalLengthBlank + totalLength;
         stats.lengthBlank = totalLengthBlank;
         stats.lengthLines = totalLength;
+<<<<<<< HEAD
+        stats.countContours = origShape.getNumContours();
+        stats.countSegments = segmentLengths.size();
+=======
+>>>>>>> 9bccc5bc9cf5e71e4f00581eeff4534c52fb03c4
     }
     
     //////////////////////////////////////////////////////////////////////////////////////////

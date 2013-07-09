@@ -456,11 +456,8 @@ namespace ciilda {
         stats.lengthTotal = totalLengthBlank + totalLength;
         stats.lengthBlank = totalLengthBlank;
         stats.lengthLines = totalLength;
-<<<<<<< HEAD
         stats.countContours = origShape.getNumContours();
         stats.countSegments = segmentLengths.size();
-=======
->>>>>>> 9bccc5bc9cf5e71e4f00581eeff4534c52fb03c4
     }
     
     //////////////////////////////////////////////////////////////////////////////////////////

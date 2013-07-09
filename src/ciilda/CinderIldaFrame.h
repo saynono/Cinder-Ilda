@@ -60,11 +60,8 @@ public:
         float lengthTotal;
         float lengthLines;
         float lengthBlank;
-<<<<<<< HEAD
         int countSegments;
         int countContours;
-=======
->>>>>>> 9bccc5bc9cf5e71e4f00581eeff4534c52fb03c4
     } stats;
     
     Frame();

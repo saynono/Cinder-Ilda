@@ -15,8 +15,6 @@
 #include "cinder/gl/gl.h"
 
 #include "CinderIldaPoint.h"
-//#include "CinderIldaFrameProcessor.h"
-//#include "CinderIldaPoly.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -144,8 +142,7 @@ protected:
     
 protected:
     
-//    CinderIldaFrameProcessor polyProcessor;
-    vector<Point> points;   // final points to send
+    vector<Point> points;
     Shape2d origShape;
     Shape2d processedShape;
     

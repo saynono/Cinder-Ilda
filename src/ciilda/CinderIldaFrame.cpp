@@ -110,6 +110,7 @@ namespace ciilda {
         float detail = 100.0f;
         
         if(params.draw.lines) {
+            console() << "params.draw.lines" << std::endl;
             gl::pushMatrices();
             gl::translate(x, y);
             gl::scale(w, h);
@@ -188,6 +189,7 @@ namespace ciilda {
     //--------------------------------------------------------------
     
     void Frame::begin(){
+        setColor( ColorA::white() );
         mColorsContours.clear();
         mColorsSegments.clear();
         origShape.clear();
@@ -204,11 +206,16 @@ namespace ciilda {
     }
     
     void Frame::addShape2d(const Shape2d& shape, ColorA clr){
-        origShape.append(shape);
         for(int i=0;i<shape.getNumContours();i++){
-            mColorsContours.push_back(clr);
+//            origShape.appendContour(shape.getContour(i));
+            addPath2d(shape.getContour(i),clr);
         }
-        addColoursToShape(shape, clr);
+
+//        origShape.append(shape);
+//        for(int i=0;i<shape.getNumContours();i++){
+//            mColorsContours.push_back(clr);
+//        }
+//        addColoursToShape(shape, clr);
     }
 
     //--------------------------------------------------------------
@@ -438,6 +445,11 @@ namespace ciilda {
                 for(int k=0;k<steps;k++){
                     percentSeg = k/steps;
                     pos = path.getSegmentPosition(j, k/steps);
+                    
+                    if(Path2d::QUADTO == path.getSegmentType(j)){
+                        console() << "  -> pathType: " << path.getSegmentType(j) << "      " << pos << std::endl;
+                    }
+
                     pIlda = transformPoint(pos,clr);
                     points.push_back(pIlda);
                 }
@@ -467,9 +479,9 @@ namespace ciilda {
         float len = 0;
         Vec2f pos1, pos2;
         float step = 1.0/detail;
-        pos1 = path.getPosition(0);
+        pos1 = path.getSegmentPosition(segment, 0);
         for(float percent=step;percent<=1;percent+=step){
-            pos2 = path.getPosition(percent);
+            pos2 = path.getSegmentPosition(segment, percent);
             len += (pos2 - pos1).length();
             pos1 = pos2;
         }

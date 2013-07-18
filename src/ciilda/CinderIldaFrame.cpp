@@ -104,24 +104,26 @@ namespace ciilda {
         ColorA clr;
         int segCounter = 0;
         int pointCounter = 0;
+        int pointTotal = 0;
         size_t pathType;
         Path2d path;
         Vec2f startPoint;
-        float detail = 100.0f;
+        float detail = 50.0f;
         
         if(params.draw.lines) {
-            console() << "params.draw.lines" << std::endl;
+//            console() << "params.draw.lines" << std::endl;
             gl::pushMatrices();
             gl::translate(x, y);
             gl::scale(w, h);
             gl::lineWidth(1);
+            clr = ColorA::white();
             for(int i=0; i<origShape.getNumContours(); i++) {
                 path = origShape.getContour(i);
                 pointCounter = 0;
-                clr = mColorsSegments[segCounter];
+//                clr = mColorsSegments[segCounter];
                 gl::color(clr);
                 
-                gl::begin(GL_LINE_STRIP);
+                gl::begin(GL_LINES);
                 startPoint = path.getPoint(pointCounter++);
                 gl::vertex(startPoint);
                 for(int j=0;j<path.getNumSegments();j++){
@@ -141,15 +143,15 @@ namespace ciilda {
                         
                         float step = 1.0/detail;
                         for(float percent=step;percent<=1;percent+=step){
-                            gl::vertex(path.getSegmentPosition(j, percent));
+                            gl::vertex( path.getSegmentPosition(j, percent) );
                         }
-
                     }
                     segCounter++;
                 }
-//                if(path.getSegmentType(path.getNumSegments()-1) == Path2d::CLOSE) gl::begin(GL_LINE_LOOP);
+                pointTotal += pointCounter;
                 gl::end();
-//                gl::end((pathType == Path2d::CLOSE));
+//                if(pathType == Path2d::CLOSE) console() << " Path2d::CLOSE " << std::endl;
+//                gl::end( pathType == Path2d::CLOSE );
             }
             gl::popMatrices();
         }
@@ -207,15 +209,8 @@ namespace ciilda {
     
     void Frame::addShape2d(const Shape2d& shape, ColorA clr){
         for(int i=0;i<shape.getNumContours();i++){
-//            origShape.appendContour(shape.getContour(i));
             addPath2d(shape.getContour(i),clr);
         }
-
-//        origShape.append(shape);
-//        for(int i=0;i<shape.getNumContours();i++){
-//            mColorsContours.push_back(clr);
-//        }
-//        addColoursToShape(shape, clr);
     }
 
     //--------------------------------------------------------------
@@ -445,10 +440,10 @@ namespace ciilda {
                 for(int k=0;k<steps;k++){
                     percentSeg = k/steps;
                     pos = path.getSegmentPosition(j, k/steps);
-                    
-                    if(Path2d::QUADTO == path.getSegmentType(j)){
-                        console() << "  -> pathType: " << path.getSegmentType(j) << "      " << pos << std::endl;
-                    }
+//                    
+//                    if(Path2d::QUADTO == path.getSegmentType(j)){
+//                        console() << "  -> pathType: " << path.getSegmentType(j) << "      " << pos << std::endl;
+//                    }
 
                     pIlda = transformPoint(pos,clr);
                     points.push_back(pIlda);

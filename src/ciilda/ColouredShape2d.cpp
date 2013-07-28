@@ -26,14 +26,22 @@ void ColouredShape2d::color( ColorAf clr ){
 const ColorAf ColouredShape2d::getCurrentColor(){
     return mCurrentColour;
 }
-
+vector<ColorAf> ColouredShape2d::getColors() const{
+    return mSegmentColours;
+}
 const ColorAf ColouredShape2d::getSegmentColor(int seg){
     return mSegmentColours[seg];
 }
 
 //--------------------------------------------------------------
 
-
+void ColouredShape2d::appendColouredShape2d(const ColouredShape2d& path){
+    Shape2d::append( path );
+    const vector<ColorAf> clrs = path.getColors();
+    for(int i=0;i<clrs.size();i++){
+        mSegmentColours.push_back( clrs[i] );
+    }
+}
 
 void ColouredShape2d::appendShape2d(const Shape2d& shape){
     for(int i=0;i<shape.getNumContours();i++){

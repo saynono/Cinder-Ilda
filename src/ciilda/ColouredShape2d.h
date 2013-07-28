@@ -27,8 +27,10 @@ public:
     
 	void    color( ColorAf clr );
     const ColorAf getCurrentColor();
+    vector<ColorAf> getColors() const;
     const ColorAf getSegmentColor(int seg);
     
+    void    appendColouredShape2d(const ColouredShape2d& path);
     void    appendShape2d(const Shape2d& path);
     void    appendPath2d(const Path2d& path);
     void    addColoursToPath(const Path2d& path, ColorA clr);

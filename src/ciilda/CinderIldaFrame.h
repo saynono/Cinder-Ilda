@@ -93,6 +93,8 @@ public:
 //    void setShape2d(const Shape2d& shape);
 //    void setShape2d(const Shape2d& shape, ColorA clr);
 
+    void addColouredShape2d(const ColouredShape2d& shape);
+    
     void addShape2d(const Shape2d& shape);
     void addShape2d(const Shape2d& shape, ColorA clr);
     

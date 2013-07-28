@@ -136,9 +136,13 @@ namespace ciilda {
     }
 
     //--------------------------------------------------------------
-    
+
+    void Frame::addColouredShape2d(const ColouredShape2d& shape){
+        origShape.appendColouredShape2d( shape );
+    }
+
     void Frame::addShape2d(const Shape2d& shape){
-        origShape.append( shape );
+        origShape.appendShape2d( shape );
     }
     
     void Frame::addShape2d(const Shape2d& shape, ColorA clr){

@@ -24,8 +24,8 @@ namespace ciilda {
         
         
         params.output.color = params.output.color.white();
-        params.output.blankCount = 10;
-        params.output.endCount = 3;
+        params.output.blankCount = 3;
+        params.output.endCount = 1;
         params.output.doCapX = false;
         params.output.doCapY = false;
         
@@ -36,8 +36,6 @@ namespace ciilda {
         params.output.transform.doFlipY = false;
         params.output.transform.offset.set(0, 0);
         params.output.transform.scale.set(1, 1);
-        
-        mCurrentColor = ColorA::white();
         
     }
 
@@ -85,74 +83,15 @@ namespace ciilda {
         
         float cx = lerp(x, x+w, .5);
         float cy = lerp(y, y+h, .5);
-
-        float scale = 1000.0f;
-        
-        Shape2d shapeDraw = origShape;
-        shapeDraw.scale(Vec2f(scale,scale));
-        
-        gl::pushMatrices();
-        gl::translate(x, y);
-        gl::scale(w/scale, h/scale);
-        gl::color( ColorA(.5,0,0,1) );
-        gl::draw( shapeDraw );
-        gl::popMatrices();
-        
-        
-        
-        
-        ColorA clr;
-        int segCounter = 0;
-        int pointCounter = 0;
-        int pointTotal = 0;
-        size_t pathType;
-        Path2d path;
-        Vec2f startPoint;
-        float detail = 50.0f;
-        
+                
         if(params.draw.lines) {
-//            console() << "params.draw.lines" << std::endl;
             gl::pushMatrices();
             gl::translate(x, y);
-            gl::scale(w, h);
-            gl::lineWidth(1);
-            clr = ColorA::white();
-            for(int i=0; i<origShape.getNumContours(); i++) {
-                path = origShape.getContour(i);
-                pointCounter = 0;
-//                clr = mColorsSegments[segCounter];
-                gl::color(clr);
-                
-                gl::begin(GL_LINES);
-                startPoint = path.getPoint(pointCounter++);
-                gl::vertex(startPoint);
-                for(int j=0;j<path.getNumSegments();j++){
-                    pathType = path.getSegmentType(j);
-                    clr = mColorsSegments[segCounter];
-                    gl::color(clr);
-                    if(pathType == Path2d::LINETO){
-                        gl::vertex( path.getPoint(pointCounter++) );
-                    }else if(pathType == Path2d::CLOSE ){
-                        gl::vertex( startPoint );
-                    }else if(pathType == Path2d::MOVETO){
-//                        gl::moveTo(path.getPoint(pointCounter++));
-                    }else{
-                        
-                        if(pathType == Path2d::CUBICTO) pointCounter += 3;
-                        else if(pathType == Path2d::QUADTO) pointCounter += 2;
-                        
-                        float step = 1.0/detail;
-                        for(float percent=step;percent<=1;percent+=step){
-                            gl::vertex( path.getSegmentPosition(j, percent) );
-                        }
-                    }
-                    segCounter++;
-                }
-                pointTotal += pointCounter;
-                gl::end();
-//                if(pathType == Path2d::CLOSE) console() << " Path2d::CLOSE " << std::endl;
-//                gl::end( pathType == Path2d::CLOSE );
-            }
+            float wScaled = w*params.output.transform.scale.x;
+            float hScaled = h*params.output.transform.scale.y;
+            gl::translate((w-wScaled)*.5, (h-hScaled)*.5);
+            gl::scale(wScaled, hScaled);
+            origShape.draw();
             gl::popMatrices();
         }
         
@@ -178,22 +117,17 @@ namespace ciilda {
     void Frame::clear() {
         points.clear();
         origShape.clear();
-        processedShape.clear();
-        mColorsContours.clear();
-        mColorsSegments.clear();
     }
     
     //--------------------------------------------------------------
     int Frame::size() {
+        // TODO clean up?
         return 10;//origPolys.size();
     }
     
     //--------------------------------------------------------------
     
     void Frame::begin(){
-        setColor( ColorA::white() );
-        mColorsContours.clear();
-        mColorsSegments.clear();
         origShape.clear();
     }
 
@@ -204,68 +138,61 @@ namespace ciilda {
     //--------------------------------------------------------------
     
     void Frame::addShape2d(const Shape2d& shape){
-        addShape2d(shape, mCurrentColor);
+        origShape.append( shape );
     }
     
     void Frame::addShape2d(const Shape2d& shape, ColorA clr){
-        for(int i=0;i<shape.getNumContours();i++){
-            addPath2d(shape.getContour(i),clr);
-        }
+        origShape.color( clr );
+        origShape.appendShape2d( shape );
     }
 
     //--------------------------------------------------------------
 
     void Frame::addPath2d(const Path2d& path){
-        addPath2d(path, mCurrentColor);
+        origShape.appendPath2d( path );
     }
     
     void Frame::addPath2d(const Path2d& path, ColorA clr){
-        origShape.appendContour(path);
-        mColorsContours.push_back(clr);
-        addColoursToPath(path, clr);
+        origShape.color( clr );
+        origShape.appendPath2d( path );
     }
     
     //--------------------------------------------------------------
     
     void Frame::moveTo(Vec2f p){
         origShape.moveTo(p);
-        mColorsSegments.push_back(mCurrentColor);
     }
     
     void Frame::lineTo(Vec2f p){
         origShape.lineTo(p);
-        mColorsSegments.push_back(mCurrentColor);
     }
     
     void Frame::arcTo(const Vec2f &p, const Vec2f &t, float radius){
         origShape.arcTo(p,t,radius);
-        mColorsSegments.push_back(mCurrentColor);
     }
     
     void Frame::curveTo(const Vec2f &p, const Vec2f &p1, const Vec2f &p2 ){
         origShape.curveTo(p,p1,p2);
-        mColorsSegments.push_back(mCurrentColor);
     }
     
     void Frame::quadTo(const Vec2f &p1, const Vec2f &p2 ){
         origShape.quadTo(p1,p2);
-        mColorsSegments.push_back(mCurrentColor);
     }
     
     //--------------------------------------------------------------
     
     void Frame::setColor(ColorA clr){
-        mCurrentColor = clr;
+        origShape.color( clr );
     }
     
-    const ColorA Frame::getColor(ColorA clr){
-        return mCurrentColor;
+    const ColorA Frame::getCurrentColor(){
+        return origShape.getCurrentColor();
     }
 
 
     //--------------------------------------------------------------
 
-    const Shape2d& Frame::getShape2d(){
+    const ColouredShape2d& Frame::getShape2d(){
         return origShape;
     }
     
@@ -273,21 +200,6 @@ namespace ciilda {
     const vector<Point>& Frame::getPoints() const {
         return points;
     }
-    
-    //--------------------------------------------------------------
-    void Frame::addColoursToShape(const Shape2d& shape, ColorA clr){
-        for(int i=0;i<shape.getNumContours();i++){
-            addColoursToPath(shape.getContour(i),clr);
-        }        
-    }
-    
-    //--------------------------------------------------------------
-    void Frame::addColoursToPath(const Path2d& path, ColorA clr){
-        for(int i=0;i<path.getNumSegments();i++){
-            mColorsSegments.push_back(clr);
-        }
-    }
-    
     
     //--------------------------------------------------------------
     void Frame::drawCalibration() {
@@ -427,14 +339,14 @@ namespace ciilda {
             totalLengthBlank += (path.getPosition(0)-pos).length();
             pos = path.getPosition(0);
             pIlda = transformPoint(pos);
-            clr = mColorsSegments[segCounter];
+            clr = origShape.getSegmentColor( segCounter );
             
             for(int k=0;k<blankCount;k++){ points.push_back(pIlda); }
             pIlda = transformPoint(pos,clr);
             for(int k=0;k<endCount;k++){ points.push_back(pIlda); }
                         
             for(int j=0;j<path.getNumSegments();j++){
-                clr = mColorsSegments[segCounter];
+                clr = origShape.getSegmentColor( segCounter );
                 len = segmentLengths[segCounter++];
                 steps = round(len / step);
                 for(int k=0;k<steps;k++){

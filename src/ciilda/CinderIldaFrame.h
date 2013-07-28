@@ -15,6 +15,7 @@
 #include "cinder/gl/gl.h"
 
 #include "CinderIldaPoint.h"
+#include "ColouredShape2d.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -98,8 +99,8 @@ public:
     void addPath2d(const Path2d& path);
     void addPath2d(const Path2d& path, ColorA clr);
     
-    void addColoursToShape(const Shape2d& shape, ColorA clr);
-    void addColoursToPath(const Path2d& path, ColorA clr);
+//    void addColoursToShape(const Shape2d& shape, ColorA clr);
+//    void addColoursToPath(const Path2d& path, ColorA clr);
     
     void moveTo(Vec2f p);
     void lineTo(Vec2f p);
@@ -108,14 +109,14 @@ public:
     void quadTo(const Vec2f &p1, const Vec2f &p2 );
     
     void setColor(ColorA clr);
-    const ColorA getColor(ColorA clr);
+    const ColorA getCurrentColor();
     
     void end();
 
     //--------------------------------------------------------------
 
     
-    const Shape2d& getShape2d();
+    const ColouredShape2d& getShape2d();
     
     //--------------------------------------------------------------
     const vector<Point>& getPoints() const;
@@ -143,13 +144,12 @@ protected:
 protected:
     
     vector<Point> points;
-    Shape2d origShape;
-    Shape2d processedShape;
+    ColouredShape2d origShape;
     
-    vector<ColorA>  mColorsContours;
-    vector<ColorA>  mColorsSegments;
+//    vector<ColorA>  mColorsContours;
+//    vector<ColorA>  mColorsSegments;
     
-    ColorA mCurrentColor;
+//    ColorA mCurrentColor;
 	
 };
 

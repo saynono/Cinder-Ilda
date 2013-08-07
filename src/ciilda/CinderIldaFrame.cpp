@@ -292,6 +292,11 @@ namespace ciilda {
     
     void Frame::calculateIldaPoints(){
         
+        if(origShape.getNumContours() == 0){
+            console() << "TODO : BLANK FRAME!" << std::endl;
+            return;
+        }
+        
         vector<float> segmentLengths;
         
         float totalLength = 0;
@@ -334,7 +339,8 @@ namespace ciilda {
         int segCounter = 0;
         float steps;
         float percentSeg;
-        Vec2f pos = origShape.getContour(origShape.getNumContours()-1).getPosition(1);
+        Vec2f pos;
+        if(origShape.getNumContours()!=0) pos = origShape.getContour(origShape.getNumContours()-1).getPosition(1);
         Point pIlda;
         ColorA clr;
         for(int i=0; i<origShape.getNumContours(); i++) {

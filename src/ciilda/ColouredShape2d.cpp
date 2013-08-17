@@ -66,12 +66,23 @@ void ColouredShape2d::addColoursToPath(const Path2d& path, ColorA clr){
 //--------------------------------------------------------------
 
 void ColouredShape2d::moveTo( const Vec2f &p ){
+    // TODO: Check if this is right!
+//    if( getNumContours() > 0 && getContour( getNumContours()-1).getNumSegments() == 0 ) removeContour( getNumContours()-1 );
+//    console() << "  ColouredShape2d::moveTo : " << getNumContours() << std::endl;
+//    for(int i=0;i<getNumContours();i++){
+//        console() << "  getContour( getNumContours()-1).getNumSegments() : " << getContour( getNumContours()-1).getNumSegments() << std::endl;
+//    }
+//    if( getNumContours() > 0 && getContour( getNumContours()-1).getNumSegments() == 0 ) mSegmentColours.push_back( ColorAf::black() );
     Shape2d::moveTo( p );
 //    mSegmentColours.push_back( mCurrentColour );
 }
 
 void ColouredShape2d::moveTo( float x, float y ){
+    // TODO: Check if this is right!
+//    if( getNumContours() > 0 && getContour( getNumContours()-1).getNumSegments() == 0 ) mSegmentColours.push_back( ColorAf::black() );
+//    if( getNumContours() > 0 && getContour( getNumContours()-1).getNumSegments() == 0 ) removeContour( getNumContours()-1 );
     Shape2d::moveTo( x, y );
+//    if(prevcontour no segments) remmove that contour!
 //    mSegmentColours.push_back( mCurrentColour );
 }
 

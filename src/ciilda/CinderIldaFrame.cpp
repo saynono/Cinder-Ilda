@@ -292,6 +292,8 @@ namespace ciilda {
     
     void Frame::calculateIldaPoints(){
         
+        points.clear();
+
         if(origShape.getNumContours() == 0){
             console() << "TODO : BLANK FRAME!" << std::endl;
             return;
@@ -305,8 +307,6 @@ namespace ciilda {
         int endCount = params.output.endCount;
         
         int totalAmountStripped = params.output.targetPointCount;
-        
-        points.clear();
         
         for(int i=0; i<origShape.getNumContours(); i++) {
             float len = 0;
@@ -346,39 +346,42 @@ namespace ciilda {
         for(int i=0; i<origShape.getNumContours(); i++) {
             float len = 0;
             Path2d path = origShape.getContour(i);
-            totalLengthBlank += (path.getPosition(0)-pos).length();
-            pos = path.getPosition(0);
-            pIlda = transformPoint(pos);
-            clr = origShape.getSegmentColor( segCounter );
+            if(path.getNumPoints() > 1){
+                totalLengthBlank += (path.getPosition(0)-pos).length();
+                pos = path.getPosition(0);
+                pIlda = transformPoint(pos);
             
-            for(int k=0;k<blankCount;k++){ points.push_back(pIlda); }
-            pIlda = transformPoint(pos,clr);
-            for(int k=0;k<endCount;k++){ points.push_back(pIlda); }
-                        
-            for(int j=0;j<path.getNumSegments();j++){
                 clr = origShape.getSegmentColor( segCounter );
-                len = segmentLengths[segCounter++];
-                steps = round(len / step);
-                for(int k=0;k<steps;k++){
-                    percentSeg = k/steps;
-                    pos = path.getSegmentPosition(j, k/steps);
+            
+                for(int k=0;k<blankCount;k++){ points.push_back(pIlda); }
+                pIlda = transformPoint(pos,clr);
+                for(int k=0;k<endCount;k++){ points.push_back(pIlda); }
+                        
+                for(int j=0;j<path.getNumSegments();j++){
+                    clr = origShape.getSegmentColor( segCounter );
+                    len = segmentLengths[segCounter++];
+                    steps = round(len / step);
+                    for(int k=0;k<steps;k++){
+                        percentSeg = k/steps;
+                        pos = path.getSegmentPosition(j, k/steps);
 //                    
 //                    if(Path2d::QUADTO == path.getSegmentType(j)){
 //                        console() << "  -> pathType: " << path.getSegmentType(j) << "      " << pos << std::endl;
 //                    }
 
-                    pIlda = transformPoint(pos,clr);
-                    points.push_back(pIlda);
+                        pIlda = transformPoint(pos,clr);
+                        points.push_back(pIlda);
+                    }
+                    pos = path.getSegmentPosition(j, 1);
                 }
-                pos = path.getSegmentPosition(j, 1);
+                pIlda = transformPoint(pos,clr);
+                points.push_back(pIlda);
             }
-            pIlda = transformPoint(pos,clr);
-            points.push_back(pIlda);
             
             for(int k=0;k<endCount;k++){ points.push_back(pIlda); }
             pIlda = transformPoint(pos);
             for(int k=0;k<blankCount;k++){ points.push_back(pIlda); }
-                        
+            
         }
         
         stats.pointCountProcessed = points.size();

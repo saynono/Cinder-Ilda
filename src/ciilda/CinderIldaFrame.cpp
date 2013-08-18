@@ -32,6 +32,9 @@ namespace ciilda {
         params.output.targetPointCount = 600;
         params.output.spacing = 0;
         
+        params.output.scannerAngleX = 60;
+        params.output.scannerAngleY = 60;
+        
         params.output.transform.doFlipX = false;
         params.output.transform.doFlipY = false;
         params.output.transform.offset.set(0, 0);

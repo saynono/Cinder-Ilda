@@ -42,6 +42,8 @@ public:
             bool doCapY;        // cap out of range on y (otherwise wraps around)
             int targetPointCount;
             int spacing;
+            float scannerAngleX;
+            float scannerAngleY;
             
             struct {
                 bool doFlipX;

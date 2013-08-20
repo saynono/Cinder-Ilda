@@ -18,7 +18,7 @@ namespace ciilda {
     void Etherdream::setup(bool bStartThread){
         etherdream_lib_start();
     
-        setPPS(20000);
+        setPPS(18000);
         setWaitBeforeSend(false);
     
         /* Sleep for a bit over a second, to ensure that we see broadcasts
@@ -92,8 +92,11 @@ namespace ciilda {
     //--------------------------------------------------------------
 	
     void Etherdream::start(){
-        bThreadRunning = true;
-        mThread = std::shared_ptr<std::thread>( new std::thread( &Etherdream::threadedFunction, this ) );
+        if(!bThreadRunning){
+            console() << "Etherdream::start thread " << std::endl;
+            bThreadRunning = true;
+            mThread = std::shared_ptr<std::thread>( new std::thread( &Etherdream::threadedFunction, this ) );
+        }
     }
 
     void Etherdream::stop(){
@@ -190,7 +193,21 @@ namespace ciilda {
     int Etherdream::getPPS() const {
         return pps;
     }
+    
+    void Etherdream::setBlankFrame() {
+        lock_guard<mutex> lock(mMutex);
+        points.clear();
+        
+        for(int i=0;i<10;i++){
+            ciilda::Point p;
+            p.x = i/200.0;
+            p.y = 0;
+            p.r = 0;
+            p.g = 0;
+            p.b = 0;
+            points.push_back(p);
+        }
 
-
+    }
 
 } // namespace ciilda

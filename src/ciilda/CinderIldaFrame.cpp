@@ -13,6 +13,7 @@ namespace ciilda {
 
     Frame::Frame() {
         setDefaultParams();
+        mLastPoint = Vec2f(.5,.5);
     }
 
     void Frame::setDefaultParams() {
@@ -39,6 +40,7 @@ namespace ciilda {
         params.output.transform.doFlipY = false;
         params.output.transform.offset.set(0, 0);
         params.output.transform.scale.set(1, 1);
+        params.output.transform.doColorCorrection = true;
         
     }
 
@@ -337,37 +339,57 @@ namespace ciilda {
             totalAmountStripped -= 1; // TODO only if not closed?
         }
         
+//        console() << " LAST POINT " << mLastPoint.x << "  " << mLastPoint.y << std::endl;
         
         float step = totalLength/totalAmountStripped;
         int segCounter = 0;
         float steps;
+        float moveLen;
+        float moveSteps;
         float percentSeg;
-        Vec2f pos;
+        Vec2f pos,posMov;
         if(origShape.getNumContours()!=0) pos = origShape.getContour(origShape.getNumContours()-1).getPosition(1);
         Point pIlda;
-        ColorA clr;
+        ColorA clr,clrIn,clrOut;
         for(int i=0; i<origShape.getNumContours(); i++) {
             float len = 0;
             Path2d path = origShape.getContour(i);
             if(path.getNumPoints() > 1){
                 totalLengthBlank += (path.getPosition(0)-pos).length();
                 pos = path.getPosition(0);
-                pIlda = transformPoint(pos);
-            
+//                pIlda = transformPoint(pos);
+                
                 clr = origShape.getSegmentColor( segCounter );
-            
+                
+//                console() << " LASTPOINT : " << mLastPoint.x << "   " << mLastPoint.y << std::endl;
+                moveLen = Vec2f(pos.x-mLastPoint.x,pos.y-mLastPoint.y).length();
+                moveSteps = (moveLen/.08);
+//                console() << " moveSteps : " << moveSteps << std::endl;
+                for(float iMov=0;iMov<moveSteps;iMov++){
+                    posMov = lerp( mLastPoint, pos, iMov/moveSteps );
+//                    pIlda.y = lerp( (float)mLastPoint.y,(float)pIlda.y,iMov/moveSteps );
+//                    pIlda.x = lerp( (float)mLastPoint.x,(float)pIlda.x,iMov/moveSteps );
+//                    console() << " --- POINT : " << posMov.x << "   " << posMov.y << "        % " << (iMov/moveSteps) << std::endl;
+                    pIlda = transformPoint(posMov);
+                    points.push_back(pIlda);
+                }
+//                console() << " NEW POINT : " << pos.x << "   " << pos.y << std::endl;
+                
+                pIlda = transformPoint(pos);
                 for(int k=0;k<blankCount;k++){ points.push_back(pIlda); }
                 pIlda = transformPoint(pos,clr);
                 for(int k=0;k<endCount;k++){ points.push_back(pIlda); }
                         
                 for(int j=0;j<path.getNumSegments();j++){
-                    clr = origShape.getSegmentColor( segCounter );
+                    clrIn = origShape.getSegmentColor( segCounter );
                     len = segmentLengths[segCounter++];
+                    clrOut = origShape.getSegmentColor( segCounter );
                     steps = round(len / step);
                     for(int k=0;k<steps;k++){
                         percentSeg = k/steps;
                         pos = path.getSegmentPosition(j, k/steps);
-//                    
+                        clr = lerp(clrIn,clrOut,percentSeg);
+//
 //                    if(Path2d::QUADTO == path.getSegmentType(j)){
 //                        console() << "  -> pathType: " << path.getSegmentType(j) << "      " << pos << std::endl;
 //                    }
@@ -379,13 +401,16 @@ namespace ciilda {
                 }
                 pIlda = transformPoint(pos,clr);
                 points.push_back(pIlda);
+                mLastPoint = pos;
             }
             
             for(int k=0;k<endCount;k++){ points.push_back(pIlda); }
             pIlda = transformPoint(pos);
             for(int k=0;k<blankCount;k++){ points.push_back(pIlda); }
-            
+            mLastPoint = pos;
         }
+
+        if(params.output.transform.doColorCorrection) applyColorCorrection();
         
         stats.pointCountProcessed = points.size();
         stats.lengthTotal = totalLengthBlank + totalLength;
@@ -394,6 +419,20 @@ namespace ciilda {
         stats.countContours = origShape.getNumContours();
         stats.countSegments = segmentLengths.size();
     }
+        
+    
+    
+    //--------------------------------------------------------------
+    
+    void Frame::applyColorCorrection(){
+        vector<Point>::iterator;
+//        for(it=points.begin();it!=points.end();++it){
+//            
+//        }
+//        console() << " UINT16_MAX : " << UINT16_MAX << std::endl;
+    }
+
+    
     
     //////////////////////////////////////////////////////////////////////////////////////////
     ////////////////// little helper

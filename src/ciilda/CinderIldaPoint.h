@@ -26,7 +26,7 @@ namespace ciilda {
     
     class Point {
     public:
-        Point() : x(0), y(0), r(0), g(0), b(0), a(0) {}
+        Point() : x(0.5), y(0.5), r(0), g(0), b(0), a(0) {}
         Point(int16_t x, int16_t y, int16_t r=0, int16_t g=0, int16_t b=0, int16_t a=0): x(x), y(y), r(r), g(g), b(b), a(a) {}
         Point(Vec2f p, ColorA c, Vec2f pmin = Vec2f::zero(), Vec2f pmax = Vec2f::one()) { set(p, c, pmin, pmax); }
         Point(Vec2f p, Vec2f pmin = Vec2f::zero(), Vec2f pmax = Vec2f::one()) { setPosition(p, pmin, pmax); }
@@ -67,7 +67,7 @@ namespace ciilda {
                 c.g * kIldaMaxIntensity,
                 c.b * kIldaMaxIntensity,
                 c.a * kIldaMaxIntensity
-                );
+            );
         }
         
         //--------------------------------------------------------------
@@ -76,7 +76,7 @@ namespace ciilda {
             set(
                 lmap<float>(p.x, pmin.x, pmax.x, kIldaMinPoint, kIldaMaxPoint),
                 lmap<float>(p.y, pmin.y, pmax.y, kIldaMinPoint, kIldaMaxPoint)
-                );
+            );
         }
         
         
@@ -86,7 +86,7 @@ namespace ciilda {
             return Vec2f(
                             lmap<float>(x, kIldaMinPoint, kIldaMaxPoint, pmin.x, pmax.x),
                             lmap<float>(y, kIldaMinPoint, kIldaMaxPoint, pmin.y, pmax.y)
-                        );
+            );
         }
         
     };

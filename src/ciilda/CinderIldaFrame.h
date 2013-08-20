@@ -46,6 +46,7 @@ public:
             float scannerAngleY;
             
             struct {
+                bool doColorCorrection;
                 bool doFlipX;
                 bool doFlipY;
                 Vec2f offset;
@@ -138,7 +139,10 @@ protected:
     
     //--------------------------------------------------------------
     void calculateIldaPoints();
-    
+
+    //--------------------------------------------------------------
+    void applyColorCorrection();
+
     //--------------------------------------------------------------
     float getSegmentLength(const Path2d& path, int segment, int detail = 100 );
     
@@ -150,10 +154,7 @@ protected:
     vector<Point> points;
     ColouredShape2d origShape;
     
-//    vector<ColorA>  mColorsContours;
-//    vector<ColorA>  mColorsSegments;
-    
-//    ColorA mCurrentColor;
+    Vec2f           mLastPoint;
 	
 };
 

@@ -47,6 +47,8 @@ public:
     virtual void setPoints(const vector<ciilda::Point>& _points){};
     virtual void setPoints(const ciilda::Frame& ildaFrame){};
     
+    virtual void setBlankFrame(){};
+
     virtual void send(){};
     
     virtual void setPPS(int i){};

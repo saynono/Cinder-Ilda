@@ -30,7 +30,9 @@ vector<ColorAf> ColouredShape2d::getColors() const{
     return mSegmentColours;
 }
 const ColorAf ColouredShape2d::getSegmentColor(int seg){
-    return mSegmentColours[seg];
+//    console() << "NumSegmentColours : " << mSegmentColours.size() << "      requesting : " << << std::endl;
+    // TODO : Vincent: Really bad.... need to fix this
+    return mSegmentColours[min(seg,(int)mSegmentColours.size()-1)];
 }
 
 //--------------------------------------------------------------

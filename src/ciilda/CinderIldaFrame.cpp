@@ -383,12 +383,14 @@ namespace ciilda {
                 for(int j=0;j<path.getNumSegments();j++){
                     clrIn = origShape.getSegmentColor( segCounter );
                     len = segmentLengths[segCounter++];
-                    clrOut = origShape.getSegmentColor( segCounter );
+                    clrOut = origShape.getSegmentColor( segCounter );                    
                     steps = round(len / step);
                     for(int k=0;k<steps;k++){
                         percentSeg = k/steps;
                         pos = path.getSegmentPosition(j, k/steps);
                         clr = lerp(clrIn,clrOut,percentSeg);
+                        
+//                        console() << j << " CLR : " << (clr.r*255) << std::endl;
 //
 //                    if(Path2d::QUADTO == path.getSegmentType(j)){
 //                        console() << "  -> pathType: " << path.getSegmentType(j) << "      " << pos << std::endl;

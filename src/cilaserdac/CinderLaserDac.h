@@ -27,16 +27,9 @@ public:
     
     virtual ~LaserController(){};
     
-    virtual bool stateIsFound(){return false;};
-    
     virtual void kill(){};
-    virtual void setup(bool bStartThread = true){};
-    virtual void threadedFunction(){};
-    
-    
-    // check if the device has shutdown (weird bug in etherdream driver) and reconnect if nessecary
-    virtual bool checkConnection(bool bForceReconnect = true){return false;};
-    
+    virtual void setup(){};
+
     virtual void clear(){};
     virtual void start(){};
     virtual void stop(){};
@@ -53,9 +46,6 @@ public:
     
     virtual void setPPS(int i){};
     virtual int getPPS() const {return 0;};
-    
-    virtual void setWaitBeforeSend(bool b) {};
-    virtual bool getWaitBeforeSend() const {return false;};
 	
 };
 

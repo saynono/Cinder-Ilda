@@ -15,7 +15,7 @@ namespace ciilda {
         bThreadRunning = false;
     }
     
-    void Etherdream::setup(bool bStartThread){
+    void Etherdream::setup(){
         etherdream_lib_start();
     
         setPPS(18000);
@@ -25,8 +25,7 @@ namespace ciilda {
          * from all available DACs. */
         usleep(100000);
         init();
-    
-        if(bStartThread) start();
+        start();
     
     }
     
@@ -56,15 +55,15 @@ namespace ciilda {
         }
         
         for (int i=0; i<device_num; i++) {
-            console() << "ofxEtherdream::init - " << i << " Ether Dream " << etherdream_get_id(etherdream_get(i)) << std::endl;
+            console() << "Etherdream::init - " << i << " Ether Dream " << etherdream_get_id(etherdream_get(i)) << std::endl;
         }
         
         device = etherdream_get(0);
         
-        console() << "ofxEtherdream::init - Connecting..." << std::endl;
+        console() << "Etherdream::init - Connecting..." << std::endl;
         if (etherdream_connect(device) < 0) return 1;
         
-        console() << "ofxEtherdream::init - done" << std::endl;
+        console() << "Etherdream::init - done" << std::endl;
         
         lock_guard<mutex> lock(mMutex);
         state = ETHERDREAM_FOUND;

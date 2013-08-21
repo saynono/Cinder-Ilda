@@ -29,7 +29,8 @@
 		FF6DAB891783879300F53BF2 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = FF6DAB411783879200F53BF2 /* Makefile */; };
 		FF6DABA51783879300F53BF2 /* CinderEtherdream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF6DAB721783879300F53BF2 /* CinderEtherdream.cpp */; };
 		FF6DABA61783879300F53BF2 /* CinderIldaFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FF6DAB751783879300F53BF2 /* CinderIldaFrame.cpp */; };
-		FFB38CDC17C410BB000AFBA7 /* ColouredShape2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFB38CDA17C4102C000AFBA7 /* ColouredShape2d.cpp */; };
+		FFB38CD917C40BE6000AFBA7 /* CinderEasyLase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFB38CD717C40BE6000AFBA7 /* CinderEasyLase.cpp */; };
+		FFB38CDF17C41C3D000AFBA7 /* ColouredShape2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FFB38CDD17C41C3D000AFBA7 /* ColouredShape2d.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,9 +46,9 @@
 		4D8A5F4AD65E4A07AB826A1A /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CinderApp.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; };
 		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
 		5323E6B50EAFCA7E003A9687 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = /System/Library/Frameworks/QTKit.framework; sourceTree = "<absolute>"; };
-		8D1107320486CEB800E47090 /* SimpleIldaExample_Etherdream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleIldaExample_Etherdream.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107320486CEB800E47090 /* SimpleIldaExample_EasyLase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleIldaExample_EasyLase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4271B05583C4101A7ACAF85 /* CinderIldaApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = CinderIldaApp.cpp; path = ../src/CinderIldaApp.cpp; sourceTree = "<group>"; };
-		CC32F4B2F6604609A4459A65 /* SimpleIldaExample_Etherdream_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleIldaExample_Etherdream_Prefix.pch; sourceTree = "<group>"; };
+		CC32F4B2F6604609A4459A65 /* SimpleIldaExample_EasyLase_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleIldaExample_EasyLase_Prefix.pch; sourceTree = "<group>"; };
 		D1B6186FC7A549F8818D00C4 /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
 		FF045DD7178C9280005FE797 /* CinderLaserDac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CinderLaserDac.h; sourceTree = "<group>"; };
 		FF6DAB301783879200F53BF2 /* easyLase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = easyLase.h; sourceTree = "<group>"; };
@@ -68,8 +69,10 @@
 		FF6DAB751783879300F53BF2 /* CinderIldaFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CinderIldaFrame.cpp; sourceTree = "<group>"; };
 		FF6DAB761783879300F53BF2 /* CinderIldaFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CinderIldaFrame.h; sourceTree = "<group>"; };
 		FF6DAB771783879300F53BF2 /* CinderIldaPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CinderIldaPoint.h; sourceTree = "<group>"; };
-		FFB38CDA17C4102C000AFBA7 /* ColouredShape2d.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ColouredShape2d.cpp; sourceTree = "<group>"; };
-		FFB38CDB17C4102C000AFBA7 /* ColouredShape2d.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColouredShape2d.h; sourceTree = "<group>"; };
+		FFB38CD717C40BE6000AFBA7 /* CinderEasyLase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CinderEasyLase.cpp; sourceTree = "<group>"; };
+		FFB38CD817C40BE6000AFBA7 /* CinderEasyLase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CinderEasyLase.h; sourceTree = "<group>"; };
+		FFB38CDD17C41C3D000AFBA7 /* ColouredShape2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColouredShape2d.cpp; sourceTree = "<group>"; };
+		FFB38CDE17C41C3D000AFBA7 /* ColouredShape2d.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColouredShape2d.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,7 +139,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107320486CEB800E47090 /* SimpleIldaExample_Etherdream.app */,
+				8D1107320486CEB800E47090 /* SimpleIldaExample_EasyLase.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -158,7 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				D1B6186FC7A549F8818D00C4 /* Resources.h */,
-				CC32F4B2F6604609A4459A65 /* SimpleIldaExample_Etherdream_Prefix.pch */,
+				CC32F4B2F6604609A4459A65 /* SimpleIldaExample_EasyLase_Prefix.pch */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 		FF6DAB701783879300F53BF2 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				FFB38CD617C40BE6000AFBA7 /* cieasylase */,
 				FF045DD5178C9280005FE797 /* cilaserdac */,
 				FF6DAB711783879300F53BF2 /* cietherdream */,
 				FF6DAB741783879300F53BF2 /* ciilda */,
@@ -313,8 +317,8 @@
 		FF6DAB741783879300F53BF2 /* ciilda */ = {
 			isa = PBXGroup;
 			children = (
-				FFB38CDA17C4102C000AFBA7 /* ColouredShape2d.cpp */,
-				FFB38CDB17C4102C000AFBA7 /* ColouredShape2d.h */,
+				FFB38CDD17C41C3D000AFBA7 /* ColouredShape2d.cpp */,
+				FFB38CDE17C41C3D000AFBA7 /* ColouredShape2d.h */,
 				FF6DAB751783879300F53BF2 /* CinderIldaFrame.cpp */,
 				FF6DAB761783879300F53BF2 /* CinderIldaFrame.h */,
 				FF6DAB771783879300F53BF2 /* CinderIldaPoint.h */,
@@ -322,12 +326,21 @@
 			path = ciilda;
 			sourceTree = "<group>";
 		};
+		FFB38CD617C40BE6000AFBA7 /* cieasylase */ = {
+			isa = PBXGroup;
+			children = (
+				FFB38CD717C40BE6000AFBA7 /* CinderEasyLase.cpp */,
+				FFB38CD817C40BE6000AFBA7 /* CinderEasyLase.h */,
+			);
+			path = cieasylase;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D1107260486CEB800E47090 /* SimpleIldaExample_Etherdream */ = {
+		8D1107260486CEB800E47090 /* SimpleIldaExample_EasyLase */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "SimpleIldaExample_Etherdream" */;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "SimpleIldaExample_EasyLase" */;
 			buildPhases = (
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
@@ -337,10 +350,10 @@
 			);
 			dependencies = (
 			);
-			name = SimpleIldaExample_Etherdream;
+			name = SimpleIldaExample_EasyLase;
 			productInstallPath = "$(HOME)/Applications";
 			productName = CinderIlda;
-			productReference = 8D1107320486CEB800E47090 /* SimpleIldaExample_Etherdream.app */;
+			productReference = 8D1107320486CEB800E47090 /* SimpleIldaExample_EasyLase.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -348,7 +361,7 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "SimpleIldaExample_Etherdream" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "SimpleIldaExample_EasyLase" */;
 			compatibilityVersion = "Xcode 3.1";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -362,7 +375,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D1107260486CEB800E47090 /* SimpleIldaExample_Etherdream */,
+				8D1107260486CEB800E47090 /* SimpleIldaExample_EasyLase */,
 			);
 		};
 /* End PBXProject section */
@@ -394,7 +407,8 @@
 				FF6DAB891783879300F53BF2 /* Makefile in Sources */,
 				FF6DABA51783879300F53BF2 /* CinderEtherdream.cpp in Sources */,
 				FF6DABA61783879300F53BF2 /* CinderIldaFrame.cpp in Sources */,
-				FFB38CDC17C410BB000AFBA7 /* ColouredShape2d.cpp in Sources */,
+				FFB38CD917C40BE6000AFBA7 /* CinderEasyLase.cpp in Sources */,
+				FFB38CDF17C41C3D000AFBA7 /* ColouredShape2d.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,7 +425,7 @@
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = SimpleIldaExample_Etherdream_Prefix.pch;
+				GCC_PREFIX_HEADER = SimpleIldaExample_EasyLase_Prefix.pch;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -421,7 +435,7 @@
 					"\"$(SRCROOT)/../../../lib/easyLase/libs/driver/libEasyLase\"",
 				);
 				OTHER_LDFLAGS = "\"$(CINDER_PATH)/lib/libcinder_d.a\"";
-				PRODUCT_NAME = SimpleIldaExample_Etherdream;
+				PRODUCT_NAME = SimpleIldaExample_EasyLase;
 				SYMROOT = ./build;
 				WRAPPER_EXTENSION = app;
 			};
@@ -438,7 +452,7 @@
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = SimpleIldaExample_Etherdream_Prefix.pch;
+				GCC_PREFIX_HEADER = SimpleIldaExample_EasyLase_Prefix.pch;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -448,7 +462,7 @@
 					"\"$(SRCROOT)/../../../lib/easyLase/libs/driver/libEasyLase\"",
 				);
 				OTHER_LDFLAGS = "\"$(CINDER_PATH)/lib/libcinder.a\"";
-				PRODUCT_NAME = SimpleIldaExample_Etherdream;
+				PRODUCT_NAME = SimpleIldaExample_EasyLase;
 				STRIP_INSTALLED_PRODUCT = YES;
 				SYMROOT = ./build;
 				WRAPPER_EXTENSION = app;
@@ -492,7 +506,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "SimpleIldaExample_Etherdream" */ = {
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "SimpleIldaExample_EasyLase" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4B08A954540054247B /* Debug */,
@@ -501,7 +515,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "SimpleIldaExample_Etherdream" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "SimpleIldaExample_EasyLase" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,

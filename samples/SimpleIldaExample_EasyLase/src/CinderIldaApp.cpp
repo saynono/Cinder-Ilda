@@ -5,7 +5,7 @@
 #include "cinder/gl/Texture.h"
 #include "cinder/Text.h"
 
-#include "CinderEtherdream.h"
+#include "CinderEasyLase.h"
 #include "CinderLaserDac.h"
 #include "CinderIldaFrame.h"
 
@@ -42,14 +42,13 @@ void CinderIldaApp::setup()
     
     setWindowSize(800, 600);
     
-    mLaserDac = new ciilda::Etherdream();
+    mLaserDac = new ciilda::EasyLase();
     mLaserDac->setup();
-
-    mIldaFrame.params.output.targetPointCount = 400;
-    mIldaFrame.params.output.blankCount = 10;
-    mIldaFrame.params.output.endCount = 10;
-
     
+    mIldaFrame.params.output.targetPointCount = 400;
+    mIldaFrame.params.output.blankCount = 4;
+    mIldaFrame.params.output.endCount = 2;
+
     ColouredShape2d completeShape;
     
     ColouredShape2d shapeOrg;
@@ -60,7 +59,7 @@ void CinderIldaApp::setup()
     shapeOrg.color( ColorAf(.3,0.2,.4,1.0) );
     shapeOrg.lineTo(Vec2f(100,450));
     shapeOrg.lineTo(Vec2f(100,100));
-//    shapeOrg.close();
+    //    shapeOrg.close();
     
     
     ColouredShape2d triangle;
@@ -70,49 +69,40 @@ void CinderIldaApp::setup()
     triangle.color( ColorAf(.3,0.2,0,1) );
     triangle.lineTo(Vec2f(Vec2f(30,getWindowHeight()-30)));
     
-    ColouredShape2d something;
-    something.moveTo(Vec2f(300,100));
-    something.curveTo(Vec2f(300,150),Vec2f(150,250),Vec2f(100,250));
-
+    completeShape.color( ColorAf(0,1,1,1) );
+    completeShape.moveTo(Vec2f(300,100));
+    completeShape.lineTo(Vec2f(150,250));
+    completeShape.lineTo(Vec2f(100,250));
+//    completeShape.curveTo(Vec2f(300,150),Vec2f(150,250),Vec2f(100,250));
     
-    MatrixAffine2f matrix;
-    
-    matrix.setToIdentity();
-    matrix.translate( -Vec2f(getWindowWidth(),getWindowHeight())/2.0 );
-    triangle.transform(matrix);
-    something.transform(matrix);
-    shapeOrg.transform(matrix);
-
-    matrix.setToIdentity();
-//    matrix.translate(-Vec2f(getWindowWidth(),getWindowHeight())/2.0);
-//    matrix.transformPoint(Vec2f(getWindowWidth(),getWindowHeight())/2.0);
-    matrix.scale(Vec2f( 1.0/(float)getWindowWidth(), 1.0/(float)getWindowHeight()));
-    matrix.scale(.1);
-//    matrix.scale(.25);
-
-    triangle.transform(matrix);
-    something.transform(matrix);
-    shapeOrg.transform(matrix);
-    
-    matrix.setToIdentity();
-    matrix.translate( Vec2f(0.5,0.5) );
-    triangle.transform(matrix);
-    something.transform(matrix);
-    shapeOrg.transform(matrix);
     
     completeShape.appendColouredShape2d(shapeOrg);
     completeShape.appendColouredShape2d(triangle);
-    completeShape.appendColouredShape2d(something);
-
     
-
-//    MatrixAffine2f matrix;
-//    matrix.scale(.5);
-//    matrix.translate(Vec2f(.5,.5));
-//    shapeOrg.transform(matrix);
     
-//    mIldaFrame.params.output.transform.scale = Vec2f(.5,.5);
-//    mIldaFrame.params.output.transform.offset = Vec2f(.5,.5);
+    MatrixAffine2f matrix;    
+    matrix.setToIdentity();
+    matrix.translate( -Vec2f(getWindowWidth(),getWindowHeight())/2.0 );
+    completeShape.transform(matrix);
+
+    matrix.setToIdentity();
+    matrix.scale(Vec2f( 1.0/(float)getWindowWidth(), 1.0/(float)getWindowHeight()));
+    matrix.scale(.1);
+    completeShape.transform(matrix);
+
+    matrix.setToIdentity();
+    matrix.translate( Vec2f(0.5,0.5) );
+    completeShape.transform( matrix );
+    
+    
+    
+    //    MatrixAffine2f matrix;
+    //    matrix.scale(.5);
+    //    matrix.translate(Vec2f(.5,.5));
+    //    shapeOrg.transform(matrix);
+    
+    //    mIldaFrame.params.output.transform.scale = Vec2f(.5,.5);
+    //    mIldaFrame.params.output.transform.offset = Vec2f(.5,.5);
     
     
     mIldaFrame.begin();
@@ -131,11 +121,10 @@ void CinderIldaApp::setup()
 	simple.addLine( "Cinder" );
 	simple.addLine( "Font From Resource" );
 	mTexture = gl::Texture( simple.render( true, PREMULT ) );
-
+    
     mIldaFrame.draw(0,0,100,100);
     
 }
-
 
 void CinderIldaApp::shutdown(){
     mLaserDac->kill();
@@ -150,7 +139,8 @@ void CinderIldaApp::mouseDown( MouseEvent event )
 void CinderIldaApp::update()
 {
     mLaserDac->setPoints(mIldaFrame);
-
+//    mLaserDac->send();
+    
     float fps = getFrameRate();
     
     TextLayout simple;
@@ -159,7 +149,7 @@ void CinderIldaApp::update()
 	simple.addLine( "CinderIlda" );
 	simple.addLine( "Framerate: " + toString((int)fps) );
 	mTexture = gl::Texture( simple.render( true, PREMULT ) );
-
+    
 }
 
 void CinderIldaApp::draw()
@@ -175,7 +165,7 @@ void CinderIldaApp::draw()
     gl::drawSolidRect(Rectf(0,0,w,h));
     gl::color(1, 1, 1);
     mIldaFrame.draw(0,0,w,h);
-        
+    
 }
 
 CINDER_APP_NATIVE( CinderIldaApp, RendererGl )

@@ -11,7 +11,7 @@
 
 #include "cinder/app/AppBasic.h"
 #include "cinder/Thread.h"
-#include "etherdream.h"
+#include "easyLase.h"
 #include "CinderIldaFrame.h"
 #include "CinderLaserDac.h"
 
@@ -22,22 +22,25 @@ using namespace std;
 
 namespace ciilda {
     
-    class Etherdream: public LaserController{
+    class EasyLase: public LaserController{
 
 public:
 	
-    Etherdream();
+    EasyLase();
     
-    virtual ~Etherdream() {
+    virtual ~EasyLase() {
         kill();
     }
     
     virtual void kill() {
         clear();
         stop();
-        if(stateIsFound()) {
-            etherdream_stop(device);
-            etherdream_disconnect(device);
+        if(bCardIsConnected){
+            setBlankFrame();
+            send();
+            easyLaseStop(0);
+            bIsRunning = false;
+            console() << "EasyLase::kill!" << std::endl;
         }
     }
     
@@ -54,42 +57,30 @@ public:
     virtual void setPoints(const ciilda::Frame& ildaFrame);
     
     virtual void setBlankFrame();
+        
     virtual void send();
     
     virtual void setPPS(int i);
     virtual int getPPS() const;
     
     
-    
 private:
-    int init();
-    bool stateIsFound();
-    void threadedFunction();
         
+    int init();
     // check if the device has shutdown (weird bug in etherdream driver) and reconnect if nessecary
     bool checkConnection(bool bForceReconnect = true);
-        
-    void setWaitBeforeSend(bool b);
-    bool getWaitBeforeSend() const;
     
 private:
     enum {
-        ETHERDREAM_NOTFOUND = 0,
-        ETHERDREAM_FOUND
+        EASYLASE_NOTFOUND = 0,
+        EASYLASE_FOUND
     } state;
     
     int pps;
-    bool bWaitBeforeSend;
-    bool bThreadRunning;
+    bool bIsRunning;
+    bool bCardIsConnected;
     
-    struct etherdream *device;
-    vector<ciilda::Point> points;
-    
-    
-	mutable std::mutex mMutex;
-	std::shared_ptr<std::thread> mThread;
-
-    
+    vector<ciilda::Point> points;    
     
 };
 

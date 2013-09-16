@@ -29,12 +29,17 @@ namespace ciilda {
         params.output.endCount = 1;
         params.output.doCapX = false;
         params.output.doCapY = false;
+        params.output.doMask = false;
+        params.output.mask = Rectf(0,0,1,1);
         
         params.output.targetPointCount = 600;
         params.output.spacing = 0;
         
         params.output.scannerAngleX = 60;
         params.output.scannerAngleY = 60;
+//        params.output.maskBottom = -.5;
+        
+        params.output.moveStepDivider = 1;                 // To prevent wobbles when scanner is moving to long distances. This apperently only happens on cheap scanners. If set to 1 there won't be any blank line divisions.
         
         params.output.transform.doFlipX = false;
         params.output.transform.doFlipY = false;
@@ -108,6 +113,7 @@ namespace ciilda {
             glPointSize(3);
             gl::begin(GL_POINTS);
             for(int i=0;i<points.size();i++){
+                gl::color( ColorAf( points[i].r, points[i].g ,points[i].b ,points[i].a ) );
                 gl::vertex(points[i].x, points[i].y);
             }
             gl::end();
@@ -254,6 +260,12 @@ namespace ciilda {
         if(params.output.transform.doFlipX) p.x = 1 - p.x;
         if(params.output.transform.doFlipY) p.y = 1 - p.y;
         
+        if(params.output.doMask){
+//            p.y = max(params.output.maskBottom,p.y);
+            p.x = ci::math<float>::clamp( p.x, params.output.mask.x1, params.output.mask.x2 );
+            p.y = ci::math<float>::clamp( p.y, params.output.mask.y1, params.output.mask.y2 );
+        }
+        
         // scale
         if(params.output.transform.scale.lengthSquared() > 0) {
             p -= Vec2f(0.5, 0.5);
@@ -300,7 +312,7 @@ namespace ciilda {
         points.clear();
 
         if(origShape.getNumContours() == 0){
-            console() << "TODO : BLANK FRAME!" << std::endl;
+//            console() << "TODO : BLANK FRAME!" << std::endl;
             return;
         }
         
@@ -357,19 +369,13 @@ namespace ciilda {
             if(path.getNumPoints() > 1){
                 totalLengthBlank += (path.getPosition(0)-pos).length();
                 pos = path.getPosition(0);
-//                pIlda = transformPoint(pos);
                 
                 clr = origShape.getSegmentColor( segCounter );
                 
-//                console() << " LASTPOINT : " << mLastPoint.x << "   " << mLastPoint.y << std::endl;
                 moveLen = Vec2f(pos.x-mLastPoint.x,pos.y-mLastPoint.y).length();
-                moveSteps = (moveLen/.08);
-//                console() << " moveSteps : " << moveSteps << std::endl;
+                moveSteps = ( moveLen/ params.output.moveStepDivider );
                 for(float iMov=0;iMov<moveSteps;iMov++){
                     posMov = lerp( mLastPoint, pos, iMov/moveSteps );
-//                    pIlda.y = lerp( (float)mLastPoint.y,(float)pIlda.y,iMov/moveSteps );
-//                    pIlda.x = lerp( (float)mLastPoint.x,(float)pIlda.x,iMov/moveSteps );
-//                    console() << " --- POINT : " << posMov.x << "   " << posMov.y << "        % " << (iMov/moveSteps) << std::endl;
                     pIlda = transformPoint(posMov);
                     points.push_back(pIlda);
                 }
@@ -382,20 +388,18 @@ namespace ciilda {
                         
                 for(int j=0;j<path.getNumSegments();j++){
                     clrIn = origShape.getSegmentColor( segCounter );
-                    len = segmentLengths[segCounter++];
-                    clrOut = origShape.getSegmentColor( segCounter );                    
+                    len = segmentLengths[ segCounter ];
+                    segCounter++;
+                    clrOut = origShape.getSegmentColor( segCounter );
                     steps = round(len / step);
                     for(int k=0;k<steps;k++){
                         percentSeg = k/steps;
                         pos = path.getSegmentPosition(j, k/steps);
                         clr = lerp(clrIn,clrOut,percentSeg);
-                        
-//                        console() << j << " CLR : " << (clr.r*255) << std::endl;
-//
+//                    console() << j << " CLR : " << (clr.r*255) << std::endl;
 //                    if(Path2d::QUADTO == path.getSegmentType(j)){
 //                        console() << "  -> pathType: " << path.getSegmentType(j) << "      " << pos << std::endl;
 //                    }
-
                         pIlda = transformPoint(pos,clr);
                         points.push_back(pIlda);
                     }
@@ -411,8 +415,17 @@ namespace ciilda {
             for(int k=0;k<blankCount;k++){ points.push_back(pIlda); }
             mLastPoint = pos;
         }
-
+        
         if(params.output.transform.doColorCorrection) applyColorCorrection();
+        
+        
+//        vector<Point>::iterator it;
+//        for(it=points.begin();it!=points.end();++it){
+//            (*it).r = kIldaMaxIntensity;
+//            (*it).g = kIldaMaxIntensity;
+//            (*it).b = kIldaMaxIntensity;
+//        }
+        
         
         stats.pointCountProcessed = points.size();
         stats.lengthTotal = totalLengthBlank + totalLength;

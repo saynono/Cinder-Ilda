@@ -52,11 +52,13 @@ public:
     
     
     void                draw();
-    
+
+    vector<ColorAf>    mSegmentColours;
+
     
 private:
 	
-    vector<ColorAf>    mSegmentColours;
+//    vector<ColorAf>    mSegmentColours;
     ColorAf            mCurrentColour;
     bool               bColorSet;
 	

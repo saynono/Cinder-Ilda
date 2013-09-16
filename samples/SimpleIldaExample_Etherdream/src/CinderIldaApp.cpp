@@ -40,26 +40,42 @@ void CinderIldaApp::setup()
     
 //    setFrameRate(200);
     
-    setWindowSize(800, 600);
+    setWindowSize(800, 800);
     
     mLaserDac = new ciilda::Etherdream();
     mLaserDac->setup();
 
-    mIldaFrame.params.output.targetPointCount = 400;
-    mIldaFrame.params.output.blankCount = 10;
-    mIldaFrame.params.output.endCount = 10;
+    mIldaFrame.params.output.targetPointCount = 200;
+    mIldaFrame.params.output.blankCount = 7;
+    mIldaFrame.params.output.endCount = 7;
+    mIldaFrame.params.output.moveStepDivider = .05;
+    mIldaFrame.params.draw.points = true;
 
     
     ColouredShape2d completeShape;
     
     ColouredShape2d shapeOrg;
-    shapeOrg.color( ColorAf(1.0,0.5,.4,1.0) );
-    shapeOrg.moveTo(Vec2f(100,100));
-    shapeOrg.lineTo(Vec2f(500,100));
-    shapeOrg.lineTo(Vec2f(500,450));
-    shapeOrg.color( ColorAf(.3,0.2,.4,1.0) );
-    shapeOrg.lineTo(Vec2f(100,450));
-    shapeOrg.lineTo(Vec2f(100,100));
+//    shapeOrg.color( ColorAf(1.0,1.0,0.0,1.0) );
+//    shapeOrg.moveTo(Vec2f(100,100));
+//    shapeOrg.lineTo(Vec2f(500,100));
+//    shapeOrg.lineTo(Vec2f(500,450));
+//    shapeOrg.color( ColorAf(.3,0.2,.4,1.0) );
+//    shapeOrg.lineTo(Vec2f(100,450));
+//    shapeOrg.lineTo(Vec2f(100,100));
+    
+    
+    shapeOrg.color( ColorAf(0.0,0.0,1.0,1.0) );
+    shapeOrg.moveTo(Vec2f(200,100));
+    shapeOrg.lineTo(Vec2f(200,400));
+
+    shapeOrg.color( ColorAf(0.0,1.0,0.0,1.0) );
+    shapeOrg.moveTo(Vec2f(300,100));
+    shapeOrg.lineTo(Vec2f(300,400));
+
+    shapeOrg.color( ColorAf(1.0,0.0,0.0,1.0) );
+    shapeOrg.moveTo(Vec2f(400,100));
+    shapeOrg.lineTo(Vec2f(400,400));
+
 //    shapeOrg.close();
     
     
@@ -87,8 +103,8 @@ void CinderIldaApp::setup()
 //    matrix.translate(-Vec2f(getWindowWidth(),getWindowHeight())/2.0);
 //    matrix.transformPoint(Vec2f(getWindowWidth(),getWindowHeight())/2.0);
     matrix.scale(Vec2f( 1.0/(float)getWindowWidth(), 1.0/(float)getWindowHeight()));
-    matrix.scale(.1);
-//    matrix.scale(.25);
+//    matrix.scale(.1);
+//    matrix.scale(.75);
 
     triangle.transform(matrix);
     something.transform(matrix);
@@ -101,8 +117,8 @@ void CinderIldaApp::setup()
     shapeOrg.transform(matrix);
     
     completeShape.appendColouredShape2d(shapeOrg);
-    completeShape.appendColouredShape2d(triangle);
-    completeShape.appendColouredShape2d(something);
+//    completeShape.appendColouredShape2d(triangle);
+//    completeShape.appendColouredShape2d(something);
 
     
 
@@ -134,6 +150,10 @@ void CinderIldaApp::setup()
 
     mIldaFrame.draw(0,0,100,100);
     
+    
+    for(int i=0;i<mIldaFrame.getShape2d().mSegmentColours.size() ; i++){
+        console() << i << " COLOR :  " << mIldaFrame.getShape2d().mSegmentColours[i].r << "     ::  " << mIldaFrame.getShape2d().mSegmentColours[i].g << "    ::  " << mIldaFrame.getShape2d().mSegmentColours[i].b << std::endl;
+    }
 }
 
 
@@ -169,13 +189,13 @@ void CinderIldaApp::draw()
     gl::draw( mTexture , Vec2f( 10, 10 ) );
     gl::color(.3, 1, 1);
     
-    float w = 500;
-    float h = 500;
+    float w = 800;
+    float h = 800;
     gl::color(.1,.1,.1);
     gl::drawSolidRect(Rectf(0,0,w,h));
     gl::color(1, 1, 1);
     mIldaFrame.draw(0,0,w,h);
-        
+    
 }
 
 CINDER_APP_NATIVE( CinderIldaApp, RendererGl )

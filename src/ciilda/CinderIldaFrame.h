@@ -36,17 +36,21 @@ public:
         
         struct {
             ColorA color; // color
+            float moveStepDivider;
             int blankCount;     // how many blank points to send at path ends
             int endCount;       // how many end repeats to send
             bool doCapX;        // cap out of range on x (otherwise wraps around)
             bool doCapY;        // cap out of range on y (otherwise wraps around)
+            bool doMask;        // mask the output
+            Rectf mask;
             int targetPointCount;
             int spacing;
             float scannerAngleX;
             float scannerAngleY;
+//            float maskBottom;
             
             struct {
-                bool doColorCorrection;
+                bool doColorCorrection;         // not implemented yet
                 bool doFlipX;
                 bool doFlipY;
                 Vec2f offset;

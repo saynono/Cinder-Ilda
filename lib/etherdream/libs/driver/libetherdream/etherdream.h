@@ -6,12 +6,10 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "protocol.h"
+
     
 #define _POSIX_C_SOURCE 199309L
 #define _DARWIN_C_SOURCE 1
-    
-//#define ETHERDREAM_LOG
     
 #include <arpa/inet.h>
 #include <errno.h>
@@ -32,7 +30,10 @@ extern "C" {
 #include <mach/mach.h>
 #include <mach/mach_time.h>
 #endif
+    
+#include "protocol.h"
 
+    
 struct etherdream_point {
 	int16_t x;
 	int16_t y;
@@ -44,14 +45,12 @@ struct etherdream_point {
 	uint16_t u2;
 };
 
-    
 #define BUFFER_POINTS_PER_FRAME 16000
 #define BUFFER_NFRAMES          2
 #define MAX_LATE_ACKS		64
 #define MIN_SEND_POINTS		40
 #define DEFAULT_TIMEOUT		2000000
 #define DEBUG_THRESHOLD_POINTS	800
-
     
     struct etherdream_conn {
         int dc_sock;
@@ -113,8 +112,10 @@ struct etherdream_point {
         struct etherdream * next;
     };
     
-struct etherdream;
+//struct etherdream;
 
+    
+    
 /* etherdream_lib_start()
  *
  * Initialize the Ether Dream library and start a background thread to listen
@@ -148,6 +149,13 @@ struct etherdream *etherdream_get(unsigned long idx);
  * connection to d has been established.
  */
 unsigned long etherdream_get_id(struct etherdream *d);
+
+/* etherdream_get_in_addr(d)
+ *
+ * Return the IP address of the given Ether Dream. Does not require that
+ * a connection to d has been established.
+ */
+const struct in_addr *etherdream_get_in_addr(struct etherdream *d);
 
 /* etherdream_connect(d)
  *

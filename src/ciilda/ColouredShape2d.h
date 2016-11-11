@@ -9,7 +9,7 @@
 #pragma once
 
 
-#include "cinder/app/AppBasic.h"
+#include "cinder/app/App.h"
 #include "cinder/Shape2d.h"
 
 using namespace ci;
@@ -36,17 +36,17 @@ public:
     void    addColoursToPath(const Path2d& path, ColorA clr);
 
     
-    void	moveTo( const Vec2f &p );
+    void	moveTo( const vec2 &p );
 	void	moveTo( float x, float y );
-	void	lineTo( const Vec2f &p );
+	void	lineTo( const vec2 &p );
 	void	lineTo( float x, float y );
-	void	quadTo( const Vec2f &p1, const Vec2f &p2 );
+	void	quadTo( const vec2 &p1, const vec2 &p2 );
 	void	quadTo( float x1, float y1, float x2, float y2 );
-	void	curveTo( const Vec2f &p1, const Vec2f &p2, const Vec2f &p3 );
+	void	curveTo( const vec2 &p1, const vec2 &p2, const vec2 &p3 );
 	void	curveTo( float x1, float y1, float x2, float y2, float x3, float y3 );
-	void	arc( const Vec2f &center, float radius, float startRadians, float endRadians, bool forward = true );
+	void	arc( const vec2 &center, float radius, float startRadians, float endRadians, bool forward = true );
 	void	arc( float centerX, float centerY, float radius, float startRadians, float endRadians, bool forward = true );
-	void	arcTo( const Vec2f &p, const Vec2f &t, float radius );
+	void	arcTo( const vec2 &p, const vec2 &t, float radius );
 	void	arcTo( float x, float y, float tanX, float tanY, float radius);
 
     

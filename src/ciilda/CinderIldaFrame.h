@@ -9,7 +9,7 @@
 #pragma once
 
 
-#include "cinder/app/AppBasic.h"
+#include "cinder/app/App.h"
 #include "cinder/Shape2d.h"
 #include "cinder/utilities.h"
 #include "cinder/gl/gl.h"
@@ -53,8 +53,8 @@ public:
                 bool doColorCorrection;         // not implemented yet
                 bool doFlipX;
                 bool doFlipY;
-                Vec2f offset;
-                Vec2f scale;
+                vec2 offset;
+                vec2 scale;
             } transform;
         } output;
     } params;
@@ -111,11 +111,11 @@ public:
 //    void addColoursToShape(const Shape2d& shape, ColorA clr);
 //    void addColoursToPath(const Path2d& path, ColorA clr);
     
-    void moveTo(Vec2f p);
-    void lineTo(Vec2f p);
-    void arcTo(const Vec2f &p, const Vec2f &t, float radius);
-    void curveTo(const Vec2f &p, const Vec2f &p1, const Vec2f &p2 );
-    void quadTo(const Vec2f &p1, const Vec2f &p2 );
+    void moveTo(vec2 p);
+    void lineTo(vec2 p);
+    void arcTo(const vec2 &p, const vec2 &t, float radius);
+    void curveTo(const vec2 &p, const vec2 &p1, const vec2 &p2 );
+    void quadTo(const vec2 &p1, const vec2 &p2 );
     
     void setColor(ColorA clr);
     const ColorA getCurrentColor();
@@ -136,7 +136,7 @@ public:
 protected:
     
     //--------------------------------------------------------------
-    Point transformPoint(Vec2f p, ColorA clr = ColorA::black()) const;
+    Point transformPoint(vec2 p, ColorA clr = ColorA::black()) const;
     
     //--------------------------------------------------------------
     void updateFinalPoints();
@@ -158,7 +158,7 @@ protected:
     vector<Point> points;
     ColouredShape2d origShape;
     
-    Vec2f           mLastPoint;
+    vec2           mLastPoint;
 	
 };
 

@@ -1,15 +1,18 @@
-#include "cinder/app/AppBasic.h"
+#include "cinder/app/App.h"
+#include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 #include "cinder/gl/Texture.h"
+#include "cinder/Text.h"
 
 #include "CinderEtherdream.h"
+#include "CinderLaserDac.h"
 #include "CinderIldaFrame.h"
 
 using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-class _TBOX_PREFIX_App : public AppBasic {
+class _TBOX_PREFIX_App : public App {
   public:
 	void prepareSettings( Settings* settings );
 	void setup();
@@ -49,4 +52,4 @@ void _TBOX_PREFIX_App::draw()
     mIldaFrame.draw(0,0,w,h);
 }
 
-CINDER_APP_BASIC( _TBOX_PREFIX_App, RendererGl )
+CINDER_APP( _TBOX_PREFIX_App, RendererGl )

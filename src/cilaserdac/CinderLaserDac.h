@@ -9,7 +9,6 @@
 #pragma once
 
 
-#include "cinder/app/AppBasic.h"
 #include "CinderIldaFrame.h"
 
 using namespace ci;

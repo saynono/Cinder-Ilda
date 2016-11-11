@@ -13,7 +13,9 @@ namespace ciilda {
 
     Frame::Frame() {
         setDefaultParams();
-        mLastPoint = Vec2f(.5,.5);
+        mLastPoint = vec2(.5,.5);
+        
+        console() << "TODO: Add brightness average to frame.";
     }
 
     void Frame::setDefaultParams() {
@@ -43,8 +45,8 @@ namespace ciilda {
         
         params.output.transform.doFlipX = false;
         params.output.transform.doFlipY = false;
-        params.output.transform.offset.set(0, 0);
-        params.output.transform.scale.set(1, 1);
+        params.output.transform.offset = vec2(0.0, 0.0);
+        params.output.transform.scale = vec2(1.0, 1.0);
         params.output.transform.doColorCorrection = true;
         
     }
@@ -174,23 +176,23 @@ namespace ciilda {
     
     //--------------------------------------------------------------
     
-    void Frame::moveTo(Vec2f p){
+    void Frame::moveTo(vec2 p){
         origShape.moveTo(p);
     }
     
-    void Frame::lineTo(Vec2f p){
+    void Frame::lineTo(vec2 p){
         origShape.lineTo(p);
     }
     
-    void Frame::arcTo(const Vec2f &p, const Vec2f &t, float radius){
+    void Frame::arcTo(const vec2 &p, const vec2 &t, float radius){
         origShape.arcTo(p,t,radius);
     }
     
-    void Frame::curveTo(const Vec2f &p, const Vec2f &p1, const Vec2f &p2 ){
+    void Frame::curveTo(const vec2 &p, const vec2 &p1, const vec2 &p2 ){
         origShape.curveTo(p,p1,p2);
     }
     
-    void Frame::quadTo(const Vec2f &p1, const Vec2f &p2 ){
+    void Frame::quadTo(const vec2 &p1, const vec2 &p2 ){
         origShape.quadTo(p1,p2);
     }
     
@@ -252,7 +254,7 @@ namespace ciilda {
     }
     
     //--------------------------------------------------------------
-    Point Frame::transformPoint(Vec2f p, ColorA clr) const {
+    Point Frame::transformPoint(vec2 p, ColorA clr) const {
         
         Point pIlda;
         
@@ -267,10 +269,10 @@ namespace ciilda {
         }
         
         // scale
-        if(params.output.transform.scale.lengthSquared() > 0) {
-            p -= Vec2f(0.5, 0.5);
+        if( length(params.output.transform.scale*params.output.transform.scale) > 0) {
+            p -= vec2(0.5, 0.5);
             p *= params.output.transform.scale;
-            p += Vec2f(0.5, 0.5);
+            p += vec2(0.5, 0.5);
         }
         
         // offset
@@ -335,7 +337,7 @@ namespace ciilda {
                 pathType = path.getSegmentType(j);
                 len = 0;
                 if(pathType == Path2d::LINETO || pathType == Path2d::CLOSE ){
-                    len = (path.getSegmentPosition(j, 1) - path.getSegmentPosition(j, 0)).length();
+                    len = length(path.getSegmentPosition(j, 1) - path.getSegmentPosition(j, 0));
                 }else if(pathType == Path2d::MOVETO){
                     // Don't do anything
                 }else{
@@ -359,7 +361,7 @@ namespace ciilda {
         float moveLen;
         float moveSteps;
         float percentSeg;
-        Vec2f pos,posMov;
+        vec2 pos,posMov;
         if(origShape.getNumContours()!=0) pos = origShape.getContour(origShape.getNumContours()-1).getPosition(1);
         Point pIlda;
         ColorA clr,clrIn,clrOut;
@@ -367,12 +369,12 @@ namespace ciilda {
             float len = 0;
             Path2d path = origShape.getContour(i);
             if(path.getNumPoints() > 1){
-                totalLengthBlank += (path.getPosition(0)-pos).length();
+                totalLengthBlank += length((path.getPosition(0)-pos));
                 pos = path.getPosition(0);
                 
                 clr = origShape.getSegmentColor( segCounter );
                 
-                moveLen = Vec2f(pos.x-mLastPoint.x,pos.y-mLastPoint.y).length();
+                moveLen = length(vec2(pos.x-mLastPoint.x,pos.y-mLastPoint.y));
                 moveSteps = ( moveLen/ params.output.moveStepDivider );
                 for(float iMov=0;iMov<moveSteps;iMov++){
                     posMov = lerp( mLastPoint, pos, iMov/moveSteps );
@@ -454,12 +456,12 @@ namespace ciilda {
     
     float Frame::getSegmentLength(const Path2d& path, int segment, int detail ){
         float len = 0;
-        Vec2f pos1, pos2;
+        vec2 pos1, pos2;
         float step = 1.0/detail;
         pos1 = path.getSegmentPosition(segment, 0);
         for(float percent=step;percent<=1;percent+=step){
             pos2 = path.getSegmentPosition(segment, percent);
-            len += (pos2 - pos1).length();
+            len += length(pos2 - pos1);
             pos1 = pos2;
         }
         return len;
@@ -474,7 +476,7 @@ namespace ciilda {
             size_t pathType = path.getSegmentType(j);
             len = 0;
             if(pathType == Path2d::LINETO || pathType == Path2d::CLOSE ){
-                len = (path.getSegmentPosition(j, 1) - path.getSegmentPosition(j, 0)).length();
+                len = length(path.getSegmentPosition(j, 1) - path.getSegmentPosition(j, 0));
             }else if(pathType == Path2d::MOVETO){
                 // Don't do anything
             }else{

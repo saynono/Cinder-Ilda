@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "cinder/app/AppBasic.h"
+#include "cinder/app/App.h"
 #include "cinder/CinderMath.h"
 
 using namespace ci;
@@ -28,8 +28,8 @@ namespace ciilda {
     public:
         Point() : x(0.5), y(0.5), r(0), g(0), b(0), a(0) {}
         Point(int16_t x, int16_t y, int16_t r=0, int16_t g=0, int16_t b=0, int16_t a=0): x(x), y(y), r(r), g(g), b(b), a(a) {}
-        Point(Vec2f p, ColorA c, Vec2f pmin = Vec2f::zero(), Vec2f pmax = Vec2f::one()) { set(p, c, pmin, pmax); }
-        Point(Vec2f p, Vec2f pmin = Vec2f::zero(), Vec2f pmax = Vec2f::one()) { setPosition(p, pmin, pmax); }
+        Point(vec2 p, ColorA c, vec2 pmin = vec2(), vec2 pmax = vec2(1,1)) { set(p, c, pmin, pmax); }
+        Point(vec2 p, vec2 pmin = vec2(), vec2 pmax = vec2(1,1)) { setPosition(p, pmin, pmax); }
         
         int16_t x;
         int16_t y;
@@ -59,7 +59,7 @@ namespace ciilda {
         
         //--------------------------------------------------------------
         // set color and position mapped from custom range (defaults to normalized)
-        void set(Vec2f p, ColorA c, Vec2f pmin = Vec2f::zero(), Vec2f pmax = Vec2f::one()) {
+        void set(vec2 p, ColorA c, vec2 pmin = vec2(), vec2 pmax = vec2(1,1)) {
             set(
                 lmap<float>(p.x, pmin.x, pmax.x, kIldaMinPoint, kIldaMaxPoint),
                 lmap<float>(p.y, pmin.y, pmax.y, kIldaMinPoint, kIldaMaxPoint),
@@ -72,7 +72,7 @@ namespace ciilda {
         
         //--------------------------------------------------------------
         // set position mapped from custom range (defaults to normalized)
-        void setPosition(Vec2f p, Vec2f pmin = Vec2f::zero(), Vec2f pmax = Vec2f::one()) {
+        void setPosition(vec2 p, vec2 pmin = vec2(), vec2 pmax = vec2(1,1)) {
             set(
                 lmap<float>(p.x, pmin.x, pmax.x, kIldaMinPoint, kIldaMaxPoint),
                 lmap<float>(p.y, pmin.y, pmax.y, kIldaMinPoint, kIldaMaxPoint)
@@ -82,8 +82,8 @@ namespace ciilda {
         
         //--------------------------------------------------------------
         // gets position of point mapped to desired range (defaults to normalized)
-        Vec2f getPosition(Vec2f pmin = Vec2f::zero(), Vec2f pmax = Vec2f::one()) {
-            return Vec2f(
+        vec2 getPosition(vec2 pmin = vec2(), vec2 pmax = vec2(1,1)) {
+            return vec2(
                             lmap<float>(x, kIldaMinPoint, kIldaMaxPoint, pmin.x, pmax.x),
                             lmap<float>(y, kIldaMinPoint, kIldaMaxPoint, pmin.y, pmax.y)
             );

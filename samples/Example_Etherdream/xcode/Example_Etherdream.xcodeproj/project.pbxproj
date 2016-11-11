@@ -1,0 +1,470 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		006D720419952D00008149E2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006D720219952D00008149E2 /* AVFoundation.framework */; };
+		006D720519952D00008149E2 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006D720319952D00008149E2 /* CoreMedia.framework */; };
+		0091D8F90E81B9330029341E /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0091D8F80E81B9330029341E /* OpenGL.framework */; };
+		00B784B30FF439BC000DE1D7 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784AF0FF439BC000DE1D7 /* Accelerate.framework */; };
+		00B784B40FF439BC000DE1D7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */; };
+		00B784B50FF439BC000DE1D7 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B10FF439BC000DE1D7 /* AudioUnit.framework */; };
+		00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
+		00B9955A1B128DF400A5C623 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B995581B128DF400A5C623 /* IOKit.framework */; };
+		00B9955B1B128DF400A5C623 /* IOSurface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B995591B128DF400A5C623 /* IOSurface.framework */; };
+		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		04DE61A9D06A4C84B2AF23C2 /* protocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 8E7AF3F07AC940DEA4D77F23 /* protocol.h */; };
+		EDCBDCC8AE604A6492E19945 /* etherdream.h in Headers */ = {isa = PBXBuildFile; fileRef = 13FF36DEE1424E5B8A1584D9 /* etherdream.h */; };
+		500A5B2020CE43F2B4BF2AB7 /* test.c in Sources */ = {isa = PBXBuildFile; fileRef = 6CE2585CD3924E5EBA7B1DEC /* test.c */; };
+		8980B8D9294046F486A4FC73 /* etherdream.c in Sources */ = {isa = PBXBuildFile; fileRef = A7EEF293CEE54FF1A7D708A6 /* etherdream.c */; };
+		4E79000ECD91425099455F17 /* CinderLaserDac.h in Headers */ = {isa = PBXBuildFile; fileRef = 791B81C9356443F79FDE7A3C /* CinderLaserDac.h */; };
+		591D056980CA49B59DD23B11 /* CinderEtherdream.h in Headers */ = {isa = PBXBuildFile; fileRef = A188254A75944A5CB1C758F1 /* CinderEtherdream.h */; };
+		4C895B1CFA614C1FB282AF56 /* CinderEtherdream.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0E8971D53E77442B8A883C22 /* CinderEtherdream.cpp */; };
+		B927BF99B45C43E5BF87BCBB /* ColouredShape2d.h in Headers */ = {isa = PBXBuildFile; fileRef = 359B1D0E6D1D4224990D87FE /* ColouredShape2d.h */; };
+		3BC72BF1B33E485E84AB4A47 /* CinderIldaPoint.h in Headers */ = {isa = PBXBuildFile; fileRef = 55A580B4256D4478814AB965 /* CinderIldaPoint.h */; };
+		5C9A8E7800134F3DB0692514 /* CinderIldaFrame.h in Headers */ = {isa = PBXBuildFile; fileRef = 75A60CD95AEA47148589747F /* CinderIldaFrame.h */; };
+		83158D311240467DAD9BF908 /* ColouredShape2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B97EB4FC85B843B7A37A51CC /* ColouredShape2d.cpp */; };
+		5150DD9D24344FA19E92A837 /* CinderIldaFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8879527A964F4B76A69BD29D /* CinderIldaFrame.cpp */; };
+		294E4AF3BC2F4BB0825B3BF0 /* Example_Etherdream_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 60CD356174474E22A60C79E2 /* Example_Etherdream_Prefix.pch */; };
+		86896699D9074B808EA80321 /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 856C097AD3D94AFC91459D95 /* CinderApp.icns */; };
+		B9E736CF4D434544B3D9BB10 /* Resources.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F0BD7B56C8549B982CFC3C6 /* Resources.h */; };
+		B388923B87D84B029743ECAF /* Example_EtherdreamApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 783B6C6AED124246B6844F92 /* Example_EtherdreamApp.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		006D720219952D00008149E2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		006D720319952D00008149E2 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		0091D8F80E81B9330029341E /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
+		00B784AF0FF439BC000DE1D7 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		00B784B10FF439BC000DE1D7 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		00B784B20FF439BC000DE1D7 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		00B995581B128DF400A5C623 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		00B995591B128DF400A5C623 /* IOSurface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOSurface.framework; path = System/Library/Frameworks/IOSurface.framework; sourceTree = SDKROOT; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
+		8D1107320486CEB800E47090 /* Example_Etherdream.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example_Etherdream.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		783B6C6AED124246B6844F92 /* Example_EtherdreamApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; path = ../src/Example_EtherdreamApp.cpp; sourceTree = "<group>"; name = Example_EtherdreamApp.cpp; };
+		5F0BD7B56C8549B982CFC3C6 /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../include/Resources.h; sourceTree = "<group>"; name = Resources.h; };
+		856C097AD3D94AFC91459D95 /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; name = CinderApp.icns; };
+		AEC312C1A90E4F579CFC5815 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; name = Info.plist; };
+		60CD356174474E22A60C79E2 /* Example_Etherdream_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = Example_Etherdream_Prefix.pch; sourceTree = "<group>"; name = Example_Etherdream_Prefix.pch; };
+		8879527A964F4B76A69BD29D /* CinderIldaFrame.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; path = ../../../src/ciilda/CinderIldaFrame.cpp; sourceTree = "<group>"; name = CinderIldaFrame.cpp; };
+		B97EB4FC85B843B7A37A51CC /* ColouredShape2d.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; path = ../../../src/ciilda/ColouredShape2d.cpp; sourceTree = "<group>"; name = ColouredShape2d.cpp; };
+		75A60CD95AEA47148589747F /* CinderIldaFrame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../../../src/ciilda/CinderIldaFrame.h; sourceTree = "<group>"; name = CinderIldaFrame.h; };
+		55A580B4256D4478814AB965 /* CinderIldaPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../../../src/ciilda/CinderIldaPoint.h; sourceTree = "<group>"; name = CinderIldaPoint.h; };
+		359B1D0E6D1D4224990D87FE /* ColouredShape2d.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../../../src/ciilda/ColouredShape2d.h; sourceTree = "<group>"; name = ColouredShape2d.h; };
+		0E8971D53E77442B8A883C22 /* CinderEtherdream.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; path = ../../../src/cietherdream/CinderEtherdream.cpp; sourceTree = "<group>"; name = CinderEtherdream.cpp; };
+		A188254A75944A5CB1C758F1 /* CinderEtherdream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../../../src/cietherdream/CinderEtherdream.h; sourceTree = "<group>"; name = CinderEtherdream.h; };
+		791B81C9356443F79FDE7A3C /* CinderLaserDac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../../../src/cilaserdac/CinderLaserDac.h; sourceTree = "<group>"; name = CinderLaserDac.h; };
+		A7EEF293CEE54FF1A7D708A6 /* etherdream.c */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = ../../../lib/etherdream/libs/driver/libetherdream/etherdream.c; sourceTree = "<group>"; name = etherdream.c; };
+		6CE2585CD3924E5EBA7B1DEC /* test.c */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = ../../../lib/etherdream/libs/driver/libetherdream/test.c; sourceTree = "<group>"; name = test.c; };
+		13FF36DEE1424E5B8A1584D9 /* etherdream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../../../lib/etherdream/libs/driver/libetherdream/etherdream.h; sourceTree = "<group>"; name = etherdream.h; };
+		8E7AF3F07AC940DEA4D77F23 /* protocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../../../lib/etherdream/libs/common/protocol.h; sourceTree = "<group>"; name = protocol.h; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				006D720419952D00008149E2 /* AVFoundation.framework in Frameworks */,
+				006D720519952D00008149E2 /* CoreMedia.framework in Frameworks */,
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				0091D8F90E81B9330029341E /* OpenGL.framework in Frameworks */,
+				5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */,
+				00B784B30FF439BC000DE1D7 /* Accelerate.framework in Frameworks */,
+				00B784B40FF439BC000DE1D7 /* AudioToolbox.framework in Frameworks */,
+				00B784B50FF439BC000DE1D7 /* AudioUnit.framework in Frameworks */,
+				00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */,
+				00B9955A1B128DF400A5C623 /* IOKit.framework in Frameworks */,
+				00B9955B1B128DF400A5C623 /* IOSurface.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				783B6C6AED124246B6844F92 /* Example_EtherdreamApp.cpp */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				006D720219952D00008149E2 /* AVFoundation.framework */,
+				006D720319952D00008149E2 /* CoreMedia.framework */,
+				00B784AF0FF439BC000DE1D7 /* Accelerate.framework */,
+				00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */,
+				00B784B10FF439BC000DE1D7 /* AudioUnit.framework */,
+				00B784B20FF439BC000DE1D7 /* CoreAudio.framework */,
+				5323E6B10EAFCA74003A9687 /* CoreVideo.framework */,
+				0091D8F80E81B9330029341E /* OpenGL.framework */,
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				00B995581B128DF400A5C623 /* IOKit.framework */,
+				00B995591B128DF400A5C623 /* IOSurface.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* Example_Etherdream.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* Example_Etherdream */ = {
+			isa = PBXGroup;
+			children = (
+				01B97315FEAEA392516A2CEA /* Blocks */,
+				29B97315FDCFA39411CA2CEA /* Headers */,
+				080E96DDFE201D6D7F000001 /* Source */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = Example_Etherdream;
+			sourceTree = "<group>";
+		};
+		7A52E400B77D4757937C1130 /* ciilda */ = {
+			isa = PBXGroup;
+			children = (
+				8879527A964F4B76A69BD29D /* CinderIldaFrame.cpp */,
+				B97EB4FC85B843B7A37A51CC /* ColouredShape2d.cpp */,
+				75A60CD95AEA47148589747F /* CinderIldaFrame.h */,
+				55A580B4256D4478814AB965 /* CinderIldaPoint.h */,
+				359B1D0E6D1D4224990D87FE /* ColouredShape2d.h */,
+			);
+			name = ciilda;
+			sourceTree = "<group>";
+		};
+		CACC08C27E7443B08693B1D5 /* cietherdream */ = {
+			isa = PBXGroup;
+			children = (
+				0E8971D53E77442B8A883C22 /* CinderEtherdream.cpp */,
+				A188254A75944A5CB1C758F1 /* CinderEtherdream.h */,
+			);
+			name = cietherdream;
+			sourceTree = "<group>";
+		};
+		5F691F6A4C734E3D8E668017 /* cilaserdac */ = {
+			isa = PBXGroup;
+			children = (
+				791B81C9356443F79FDE7A3C /* CinderLaserDac.h */,
+			);
+			name = cilaserdac;
+			sourceTree = "<group>";
+		};
+		B9EB11F699EE47CBBF20F1B7 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				7A52E400B77D4757937C1130 /* ciilda */,
+				CACC08C27E7443B08693B1D5 /* cietherdream */,
+				5F691F6A4C734E3D8E668017 /* cilaserdac */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		0C9552A533E24570A5ECC55C /* libetherdream */ = {
+			isa = PBXGroup;
+			children = (
+				A7EEF293CEE54FF1A7D708A6 /* etherdream.c */,
+				6CE2585CD3924E5EBA7B1DEC /* test.c */,
+				13FF36DEE1424E5B8A1584D9 /* etherdream.h */,
+			);
+			name = libetherdream;
+			sourceTree = "<group>";
+		};
+		D1A9937D829C45DBBDB8FA77 /* driver */ = {
+			isa = PBXGroup;
+			children = (
+				0C9552A533E24570A5ECC55C /* libetherdream */,
+			);
+			name = driver;
+			sourceTree = "<group>";
+		};
+		0FD6EDA92A1547AF83B5158E /* common */ = {
+			isa = PBXGroup;
+			children = (
+				8E7AF3F07AC940DEA4D77F23 /* protocol.h */,
+			);
+			name = common;
+			sourceTree = "<group>";
+		};
+		A7716282A0E84C21ACDF0C50 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				D1A9937D829C45DBBDB8FA77 /* driver */,
+				0FD6EDA92A1547AF83B5158E /* common */,
+			);
+			name = libs;
+			sourceTree = "<group>";
+		};
+		0E95CACC7D88412FB5D52719 /* etherdream */ = {
+			isa = PBXGroup;
+			children = (
+				A7716282A0E84C21ACDF0C50 /* libs */,
+			);
+			name = etherdream;
+			sourceTree = "<group>";
+		};
+		592CC286EC2341E3BA828943 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				0E95CACC7D88412FB5D52719 /* etherdream */,
+			);
+			name = lib;
+			sourceTree = "<group>";
+		};
+		6475CA3E952641A7A9CC174F /* Cinder-Ilda */ = {
+			isa = PBXGroup;
+			children = (
+				B9EB11F699EE47CBBF20F1B7 /* src */,
+				592CC286EC2341E3BA828943 /* lib */,
+			);
+			name = "Cinder-Ilda";
+			sourceTree = "<group>";
+		};
+		01B97315FEAEA392516A2CEA /* Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				6475CA3E952641A7A9CC174F /* Cinder-Ilda */,
+			);
+			name = Blocks;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				5F0BD7B56C8549B982CFC3C6 /* Resources.h */,
+				60CD356174474E22A60C79E2 /* Example_Etherdream_Prefix.pch */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				856C097AD3D94AFC91459D95 /* CinderApp.icns */,
+				AEC312C1A90E4F579CFC5815 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* Example_Etherdream */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Example_Etherdream" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Example_Etherdream;
+			productInstallPath = "$(HOME)/Applications";
+			productName = Example_Etherdream;
+			productReference = 8D1107320486CEB800E47090 /* Example_Etherdream.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Example_Etherdream" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* Example_Etherdream */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* Example_Etherdream */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86896699D9074B808EA80321 /* CinderApp.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B388923B87D84B029743ECAF /* Example_EtherdreamApp.cpp in Sources */,
+				5150DD9D24344FA19E92A837 /* CinderIldaFrame.cpp in Sources */,
+				83158D311240467DAD9BF908 /* ColouredShape2d.cpp in Sources */,
+				4C895B1CFA614C1FB282AF56 /* CinderEtherdream.cpp in Sources */,
+				8980B8D9294046F486A4FC73 /* etherdream.c in Sources */,
+				500A5B2020CE43F2B4BF2AB7 /* test.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Example_Etherdream_Prefix.pch;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "\"$(CINDER_PATH)/lib/libcinder_d.a\"";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.libcinder.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Example_Etherdream;
+				SYMROOT = ./build;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_FAST_MATH = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"NDEBUG=1",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Example_Etherdream_Prefix.pch;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "\"$(CINDER_PATH)/lib/libcinder.a\"";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.libcinder.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Example_Etherdream;
+				STRIP_INSTALLED_PRODUCT = YES;
+				SYMROOT = ./build;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CINDER_PATH = "../../../../..";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
+				CLANG_CXX_LIBRARY = "libc++";
+				ENABLE_TESTABILITY = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\"";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include";
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CINDER_PATH = "../../../../..";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
+				CLANG_CXX_LIBRARY = "libc++";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\"";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Example_Etherdream" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Example_Etherdream" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

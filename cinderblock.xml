@@ -15,6 +15,7 @@
 	<headerPattern>src/ciilda/*.h</headerPattern>
 	<sourcePattern>src/cietherdream/*.cpp</sourcePattern>
 	<headerPattern>src/cietherdream/*.h</headerPattern>
+	<headerPattern>src/cilaserdac/*.h</headerPattern>
 	<sourcePattern>lib/etherdream/libs/driver/libetherdream/*.c</sourcePattern>
 	<headerPattern>lib/etherdream/libs/driver/libetherdream/*.h</headerPattern>
 	<headerPattern>lib/etherdream/libs/common/*.h</headerPattern>

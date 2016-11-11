@@ -67,7 +67,7 @@ void ColouredShape2d::addColoursToPath(const Path2d& path, ColorA clr){
 
 //--------------------------------------------------------------
 
-void ColouredShape2d::moveTo( const Vec2f &p ){
+void ColouredShape2d::moveTo( const vec2 &p ){
     // TODO: Check if this is right!
     Shape2d::moveTo( p );
 //    mSegmentColours.push_back( mCurrentColour );
@@ -80,7 +80,7 @@ void ColouredShape2d::moveTo( float x, float y ){
 //    mSegmentColours.push_back( mCurrentColour );
 }
 
-void ColouredShape2d::lineTo( const Vec2f &p ){
+void ColouredShape2d::lineTo( const vec2 &p ){
     Shape2d::lineTo( p );
     mSegmentColours.push_back( mCurrentColour );
 }
@@ -90,7 +90,7 @@ void ColouredShape2d::lineTo( float x, float y ){
     mSegmentColours.push_back( mCurrentColour );
 }
 
-void ColouredShape2d::quadTo( const Vec2f &p1, const Vec2f &p2 ){
+void ColouredShape2d::quadTo( const vec2 &p1, const vec2 &p2 ){
     Shape2d::quadTo( p1, p2 );
     mSegmentColours.push_back( mCurrentColour );
 }
@@ -100,7 +100,7 @@ void ColouredShape2d::quadTo( float x1, float y1, float x2, float y2 ){
     mSegmentColours.push_back( mCurrentColour );
 }
 
-void ColouredShape2d::curveTo( const Vec2f &p1, const Vec2f &p2, const Vec2f &p3 ){
+void ColouredShape2d::curveTo( const vec2 &p1, const vec2 &p2, const vec2 &p3 ){
     Shape2d::curveTo( p1, p2, p3 );
     mSegmentColours.push_back( mCurrentColour );
 }
@@ -111,7 +111,7 @@ void ColouredShape2d::curveTo( float x1, float y1, float x2, float y2, float x3,
 }
 
 
-void ColouredShape2d::arc( const Vec2f &center, float radius, float startRadians, float endRadians, bool forward ){
+void ColouredShape2d::arc( const vec2 &center, float radius, float startRadians, float endRadians, bool forward ){
     Shape2d::arc( center, radius, startRadians, endRadians, forward );
     mSegmentColours.push_back( mCurrentColour );
 }
@@ -121,7 +121,7 @@ void ColouredShape2d::arc( float centerX, float centerY, float radius, float sta
     mSegmentColours.push_back( mCurrentColour );
 }
 
-void ColouredShape2d::arcTo( const Vec2f &p, const Vec2f &t, float radius ){
+void ColouredShape2d::arcTo( const vec2 &p, const vec2 &t, float radius ){
     Shape2d::arcTo( p, t, radius );
     mSegmentColours.push_back( mCurrentColour );
 }
@@ -141,7 +141,7 @@ void ColouredShape2d::draw(){
     int pathType;
     int segCounter = 0;
     float detail = 50.0f;
-    Vec2f startPoint;
+    vec2 startPoint;
     ColorAf clr = ColorA::white();
     
     gl::lineWidth(1);
